@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NumberRangeInput Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }</style>
+</head>
+<body>
+  <div class="max-w-md mx-auto space-y-6">
+    <!-- Delay range -->
+    <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6">
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-900">操作延迟范围</label>
+        <div class="flex items-center gap-3">
+          <div class="relative flex-1">
+            <input type="number" value="3" class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 outline-none" />
+            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400">秒</span>
+          </div>
+          <span class="text-sm text-gray-400 shrink-0">—</span>
+          <div class="relative flex-1">
+            <input type="number" value="8" class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 outline-none" />
+            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400">秒</span>
+          </div>
+        </div>
+        <p class="text-xs text-gray-400">范围：1 ~ 30 秒</p>
+      </div>
+    </div>
+
+    <!-- Frequency limit -->
+    <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6">
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-900">每日发布频率</label>
+        <div class="flex items-center gap-3">
+          <div class="relative flex-1">
+            <input type="number" value="1" class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 outline-none" />
+            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400">次</span>
+          </div>
+          <span class="text-sm text-gray-400 shrink-0">—</span>
+          <div class="relative flex-1">
+            <input type="number" value="5" class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 outline-none" />
+            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400">次</span>
+          </div>
+        </div>
+        <p class="text-xs text-gray-400">范围：1 ~ 20 次</p>
+      </div>
+    </div>
+
+    <!-- Focused state -->
+    <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6">
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-900">间隔时间</label>
+        <div class="flex items-center gap-3">
+          <div class="relative flex-1">
+            <input type="number" value="30" class="w-full rounded-lg border border-blue-600 ring-1 ring-blue-600 bg-white px-3 py-2 text-sm text-gray-900 outline-none" />
+            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400">分钟</span>
+          </div>
+          <span class="text-sm text-gray-400 shrink-0">—</span>
+          <div class="relative flex-1">
+            <input type="number" value="120" class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 outline-none" />
+            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400">分钟</span>
+          </div>
+        </div>
+        <p class="text-xs text-gray-400">范围：10 ~ 240 分钟</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

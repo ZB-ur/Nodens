@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PublishStatusBadge Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="space-y-6 max-w-md mx-auto">
+    <h2 class="text-lg font-semibold text-gray-900">PublishStatusBadge</h2>
+
+    <!-- All statuses -->
+    <div class="space-y-3">
+      <p class="text-sm font-medium text-gray-600">All Statuses</p>
+      <div class="flex flex-wrap items-center gap-3">
+        <!-- Pending -->
+        <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold bg-gray-100 text-gray-700">
+          <span class="relative inline-flex">
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-gray-400"></span>
+          </span>
+          待发布
+        </span>
+        <!-- Publishing -->
+        <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold bg-blue-100 text-blue-700">
+          <span class="relative inline-flex">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 bg-blue-500"></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-blue-500"></span>
+          </span>
+          发布中
+        </span>
+        <!-- Success -->
+        <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold bg-emerald-100 text-emerald-700">
+          <span class="relative inline-flex">
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+          </span>
+          已发布
+        </span>
+        <!-- Failed -->
+        <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold bg-red-100 text-red-700">
+          <span class="relative inline-flex">
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
+          </span>
+          发布失败
+        </span>
+        <!-- Cancelled -->
+        <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold bg-gray-100 text-gray-500">
+          <span class="relative inline-flex">
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-gray-400"></span>
+          </span>
+          已取消
+        </span>
+      </div>
+    </div>
+
+    <!-- In context -->
+    <div class="space-y-3">
+      <p class="text-sm font-medium text-gray-600">In Context (Schedule Card)</p>
+      <div class="bg-white rounded-xl border border-gray-200 p-4 space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-semibold text-gray-900">小红书穿搭分享笔记</span>
+          <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold bg-blue-100 text-blue-700">
+            <span class="relative inline-flex">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 bg-blue-500"></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-blue-500"></span>
+            </span>
+            发布中
+          </span>
+        </div>
+        <p class="text-xs text-gray-400">计划时间: 2026-03-24 18:00</p>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 p-4 space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-semibold text-gray-900">美食探店日记</span>
+          <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold bg-emerald-100 text-emerald-700">
+            <span class="relative inline-flex">
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+            </span>
+            已发布
+          </span>
+        </div>
+        <p class="text-xs text-gray-400">发布时间: 2026-03-24 12:00</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

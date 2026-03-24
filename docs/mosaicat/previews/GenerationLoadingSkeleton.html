@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GenerationLoadingSkeleton Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }
+    @keyframes shimmer {
+      0% { opacity: 1; }
+      50% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+    .skeleton-pulse {
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .animate-spin-slow {
+      animation: spin 1s linear infinite;
+    }
+    @keyframes ping {
+      75%, 100% { transform: scale(2); opacity: 0; }
+    }
+    .animate-ping-dot {
+      animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+  </style>
+</head>
+<body>
+  <div style="max-width: 42rem; margin: 0 auto; padding: 1.5rem;">
+
+    <!-- AI Working Indicator -->
+    <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 2rem;">
+      <div style="position: relative; margin-bottom: 1rem;">
+        <div style="width: 4rem; height: 4rem; border-radius: 9999px; background: #dbeafe; display: flex; align-items: center; justify-content: center;">
+          <svg class="animate-spin-slow" style="width: 2rem; height: 2rem; color: #2563eb;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle style="opacity: 0.25;" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path style="opacity: 0.75;" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        </div>
+        <span style="position: absolute; top: -0.25rem; right: -0.25rem; display: flex; width: 1rem; height: 1rem;">
+          <span class="animate-ping-dot" style="position: absolute; display: inline-flex; width: 100%; height: 100%; border-radius: 9999px; background: #60a5fa; opacity: 0.75;"></span>
+          <span style="position: relative; display: inline-flex; width: 1rem; height: 1rem; border-radius: 9999px; background: #3b82f6;"></span>
+        </span>
+      </div>
+
+      <h3 style="font-size: 1.125rem; font-weight: 600; color: #111827; margin: 0 0 0.25rem 0;">
+        AI 正在创作中…
+      </h3>
+      <p style="font-size: 0.875rem; color: #4b5563; margin: 0;">
+        预计还需 12 秒
+      </p>
+    </div>
+
+    <!-- Progress Bar -->
+    <div style="margin-bottom: 2rem;">
+      <div style="height: 0.5rem; width: 100%; background: #e5e7eb; border-radius: 9999px; overflow: hidden;">
+        <div style="height: 100%; width: 40%; background: #2563eb; border-radius: 9999px; transition: width 1s linear;"></div>
+      </div>
+    </div>
+
+    <!-- Skeleton Preview Card -->
+    <div style="background: white; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 1.5rem;">
+
+      <!-- Title skeleton -->
+      <div style="margin-bottom: 1.25rem;">
+        <div class="skeleton-pulse" style="height: 0.75rem; width: 4rem; background: #e5e7eb; border-radius: 0.25rem; margin-bottom: 0.5rem;"></div>
+        <div class="skeleton-pulse" style="height: 1.5rem; width: 75%; background: #e5e7eb; border-radius: 0.5rem;"></div>
+      </div>
+
+      <!-- Body skeleton -->
+      <div style="margin-bottom: 1.25rem;">
+        <div class="skeleton-pulse" style="height: 0.75rem; width: 3rem; background: #e5e7eb; border-radius: 0.25rem; margin-bottom: 0.5rem;"></div>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+          <div class="skeleton-pulse" style="height: 1rem; width: 100%; background: #e5e7eb; border-radius: 0.25rem;"></div>
+          <div class="skeleton-pulse" style="height: 1rem; width: 100%; background: #e5e7eb; border-radius: 0.25rem; animation-delay: 0.1s;"></div>
+          <div class="skeleton-pulse" style="height: 1rem; width: 83%; background: #e5e7eb; border-radius: 0.25rem; animation-delay: 0.2s;"></div>
+          <div class="skeleton-pulse" style="height: 1rem; width: 66%; background: #e5e7eb; border-radius: 0.25rem; animation-delay: 0.3s;"></div>
+        </div>
+      </div>
+
+      <!-- Hashtags skeleton -->
+      <div>
+        <div class="skeleton-pulse" style="height: 0.75rem; width: 5rem; background: #e5e7eb; border-radius: 0.25rem; margin-bottom: 0.5rem;"></div>
+        <div style="display: flex; gap: 0.5rem;">
+          <div class="skeleton-pulse" style="height: 1.75rem; width: 4rem; background: #e5e7eb; border-radius: 9999px;"></div>
+          <div class="skeleton-pulse" style="height: 1.75rem; width: 5rem; background: #e5e7eb; border-radius: 9999px; animation-delay: 0.15s;"></div>
+          <div class="skeleton-pulse" style="height: 1.75rem; width: 3.5rem; background: #e5e7eb; border-radius: 9999px; animation-delay: 0.3s;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tip -->
+    <p style="font-size: 0.75rem; color: #9ca3af; text-align: center; margin-top: 1rem;">
+      生成过程中请勿关闭页面
+    </p>
+  </div>
+</body>
+</html>

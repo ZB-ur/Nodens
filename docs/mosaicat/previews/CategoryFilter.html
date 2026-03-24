@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CategoryFilter Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <!-- Default state: "全部" selected, no account filter -->
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-2">Default — 全部 selected</div>
+    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <!-- Category Pills -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1">
+          <span class="text-sm font-medium text-gray-600 shrink-0">分类</span>
+          <button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium bg-blue-600 text-white shadow-sm shrink-0">
+            全部
+          </button>
+          <button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 shrink-0">
+            美妆 <span class="text-xs text-gray-400">24</span>
+          </button>
+          <button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 shrink-0">
+            穿搭 <span class="text-xs text-gray-400">18</span>
+          </button>
+          <button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 shrink-0">
+            美食 <span class="text-xs text-gray-400">31</span>
+          </button>
+          <button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 shrink-0">
+            旅行 <span class="text-xs text-gray-400">12</span>
+          </button>
+          <button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 shrink-0">
+            家居 <span class="text-xs text-gray-400">9</span>
+          </button>
+        </div>
+        <!-- Account Dropdown -->
+        <div class="flex items-center gap-2 shrink-0">
+          <span class="text-sm font-medium text-gray-600">账号</span>
+          <div class="relative">
+            <select class="appearance-none bg-white border border-gray-200 rounded-lg px-3 py-1.5 pr-8 text-sm text-gray-900 cursor-pointer">
+              <option>全部账号</option>
+              <option>小美日记</option>
+              <option>穿搭研究所</option>
+              <option>吃货小分队</option>
+            </select>
+            <svg class="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active category state -->
+    <div class="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-2">Active — "美食" selected + account filtered</div>
+    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex items-center gap-2 overflow-x-auto pb-1">
+          <span class="text-sm font-medium text-gray-600 shrink-0">分类</span>
+          <button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium bg-white text-gray-600 border border-gray-200 shrink-0">
+            全部
+          </button>
+          <button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium bg-white text-gray-600 border border-gray-200 shrink-0">
+            美妆 <span class="text-xs text-gray-400">24</span>
+          </button>
+          <button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium bg-white text-gray-600 border border-gray-200 shrink-0">
+            穿搭 <span class="text-xs text-gray-400">18</span>
+          </button>
+          <button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium bg-blue-600 text-white shadow-sm shrink-0">
+            美食 <span class="text-xs text-blue-200">31</span>
+          </button>
+          <button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium bg-white text-gray-600 border border-gray-200 shrink-0">
+            旅行 <span class="text-xs text-gray-400">12</span>
+          </button>
+          <button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium bg-white text-gray-600 border border-gray-200 shrink-0">
+            家居 <span class="text-xs text-gray-400">9</span>
+          </button>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <span class="text-sm font-medium text-gray-600">账号</span>
+          <div class="relative">
+            <select class="appearance-none bg-white border border-gray-200 rounded-lg px-3 py-1.5 pr-8 text-sm text-gray-900 cursor-pointer">
+              <option>吃货小分队</option>
+              <option>全部账号</option>
+              <option>小美日记</option>
+              <option>穿搭研究所</option>
+            </select>
+            <svg class="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

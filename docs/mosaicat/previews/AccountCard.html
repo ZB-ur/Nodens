@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AccountCard Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 24px; background: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+    @keyframes ping { 75%, 100% { transform: scale(2); opacity: 0; } }
+    .animate-ping { animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite; }
+  </style>
+</head>
+<body>
+  <div style="max-width: 960px; margin: 0 auto;">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">AccountCard — 账号信息卡片</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- Card 1: Cookie Valid + Topic Configured -->
+      <div class="relative bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow p-5 flex flex-col gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-red-400 flex items-center justify-center text-white font-bold text-lg border border-gray-200">美</div>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-base font-semibold text-gray-900 truncate">美妆小达人</h3>
+            <div class="flex items-center gap-1.5 mt-0.5">
+              <span class="text-sm">📕</span>
+              <span class="text-sm text-gray-600">小红书</span>
+            </div>
+          </div>
+          <button class="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 6a2 2 0 110-4 2 2 0 010 4zm0 6a2 2 0 110-4 2 2 0 010 4zm0 6a2 2 0 110-4 2 2 0 010 4z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="flex items-center justify-between bg-slate-50 rounded-lg px-3 py-2.5">
+          <div class="flex items-center gap-2">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+            <span class="text-sm font-medium text-emerald-600">Cookie 正常</span>
+          </div>
+          <span class="text-xs text-gray-400">3月24日 10:30</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1 text-xs font-medium text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2.5 py-0.5">
+            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            主题已配置
+          </span>
+        </div>
+      </div>
+
+      <!-- Card 2: Cookie Expiring + Topic Not Configured -->
+      <div class="relative bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow p-5 flex flex-col gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-indigo-400 flex items-center justify-center text-white font-bold text-lg border border-gray-200">旅</div>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-base font-semibold text-gray-900 truncate">环球旅行日记</h3>
+            <div class="flex items-center gap-1.5 mt-0.5">
+              <span class="text-sm">📕</span>
+              <span class="text-sm text-gray-600">小红书</span>
+            </div>
+          </div>
+          <button class="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 6a2 2 0 110-4 2 2 0 010 4zm0 6a2 2 0 110-4 2 2 0 010 4zm0 6a2 2 0 110-4 2 2 0 010 4z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="flex items-center justify-between bg-slate-50 rounded-lg px-3 py-2.5">
+          <div class="flex items-center gap-2">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
+            </span>
+            <span class="text-sm font-medium text-amber-600">Cookie 即将过期</span>
+          </div>
+          <span class="text-xs text-gray-400">3月23日 18:00</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1 text-xs font-medium text-amber-700 bg-amber-50 border border-amber-200 rounded-full px-2.5 py-0.5 cursor-pointer hover:bg-amber-100 transition-colors">
+            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9"/></svg>
+            待配置主题
+          </span>
+        </div>
+      </div>
+
+      <!-- Card 3: Cookie Expired + Topic Configured -->
+      <div class="relative bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow p-5 flex flex-col gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-400 to-teal-400 flex items-center justify-center text-white font-bold text-lg border border-gray-200">食</div>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-base font-semibold text-gray-900 truncate">每日美食分享</h3>
+            <div class="flex items-center gap-1.5 mt-0.5">
+              <span class="text-sm">📕</span>
+              <span class="text-sm text-gray-600">小红书</span>
+            </div>
+          </div>
+          <button class="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 6a2 2 0 110-4 2 2 0 010 4zm0 6a2 2 0 110-4 2 2 0 010 4zm0 6a2 2 0 110-4 2 2 0 010 4z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="flex items-center justify-between bg-slate-50 rounded-lg px-3 py-2.5">
+          <div class="flex items-center gap-2">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+            </span>
+            <span class="text-sm font-medium text-red-600">Cookie 已过期</span>
+          </div>
+          <span class="text-xs text-gray-400">3月20日 09:15</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1 text-xs font-medium text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2.5 py-0.5">
+            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            主题已配置
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

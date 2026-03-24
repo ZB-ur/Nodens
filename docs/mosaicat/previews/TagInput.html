@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TagInput Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="mx-auto max-w-md space-y-8">
+
+    <!-- State 1: With tags and input -->
+    <div>
+      <label class="mb-2 block text-sm font-medium text-gray-900">主题标签</label>
+      <div class="relative">
+        <div class="flex flex-wrap items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 transition-colors ring-1 ring-blue-600 border-blue-600">
+          <span class="inline-flex items-center gap-1 rounded-md bg-blue-50 px-2.5 py-1 text-sm font-medium text-blue-700">
+            美妆护肤
+            <button class="ml-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full text-blue-400 hover:bg-blue-200 hover:text-blue-600">
+              <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l6 6M9 3l-6 6"/></svg>
+            </button>
+          </span>
+          <span class="inline-flex items-center gap-1 rounded-md bg-blue-50 px-2.5 py-1 text-sm font-medium text-blue-700">
+            日常穿搭
+            <button class="ml-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full text-blue-400 hover:bg-blue-200 hover:text-blue-600">
+              <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l6 6M9 3l-6 6"/></svg>
+            </button>
+          </span>
+          <span class="inline-flex items-center gap-1 rounded-md bg-blue-50 px-2.5 py-1 text-sm font-medium text-blue-700">
+            好物分享
+            <button class="ml-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full text-blue-400 hover:bg-blue-200 hover:text-blue-600">
+              <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l6 6M9 3l-6 6"/></svg>
+            </button>
+          </span>
+          <input type="text" value="生活" class="min-w-[120px] flex-1 border-none bg-transparent py-1 text-sm text-gray-900 outline-none" readonly />
+        </div>
+        <div class="mt-1.5 flex items-center justify-between px-1">
+          <span class="text-xs text-gray-400">3/20 个标签</span>
+        </div>
+
+        <!-- Suggestions dropdown shown -->
+        <div class="absolute left-0 right-0 z-10 mt-1 max-h-48 overflow-y-auto rounded-lg border border-gray-200 bg-white py-1 shadow-md">
+          <div class="px-3 py-1.5 text-xs font-medium text-gray-400">建议标签</div>
+          <button class="flex w-full items-center px-3 py-2 text-left text-sm bg-blue-50 text-blue-700">
+            <svg class="mr-2 h-3.5 w-3.5 text-gray-400" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1v12M1 7h12"/></svg>
+            生活记录
+          </button>
+          <button class="flex w-full items-center px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-50">
+            <svg class="mr-2 h-3.5 w-3.5 text-gray-400" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1v12M1 7h12"/></svg>
+            生活方式
+          </button>
+          <button class="flex w-full items-center px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-50">
+            <svg class="mr-2 h-3.5 w-3.5 text-gray-400" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1v12M1 7h12"/></svg>
+            生活日常
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spacer for dropdown -->
+    <div class="h-16"></div>
+
+    <!-- State 2: Empty state -->
+    <div>
+      <label class="mb-2 block text-sm font-medium text-gray-900">关键词</label>
+      <div class="relative">
+        <div class="flex flex-wrap items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2">
+          <input type="text" placeholder="输入标签后按回车添加" class="min-w-[120px] flex-1 border-none bg-transparent py-1 text-sm text-gray-900 outline-none placeholder:text-gray-400" readonly />
+        </div>
+        <div class="mt-1.5 flex items-center justify-between px-1">
+          <span class="text-xs text-gray-400">0/20 个标签</span>
+          <span class="text-xs text-gray-400">按 Enter 添加</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- State 3: At limit -->
+    <div>
+      <label class="mb-2 block text-sm font-medium text-gray-900">风格标签 (已满)</label>
+      <div class="relative">
+        <div class="flex flex-wrap items-center gap-2 rounded-lg border border-amber-300 bg-amber-50/30 px-3 py-2">
+          <span class="inline-flex items-center gap-1 rounded-md bg-blue-50 px-2.5 py-1 text-sm font-medium text-blue-700">
+            清新
+            <button class="ml-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full text-blue-400 hover:bg-blue-200 hover:text-blue-600">
+              <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l6 6M9 3l-6 6"/></svg>
+            </button>
+          </span>
+          <span class="inline-flex items-center gap-1 rounded-md bg-blue-50 px-2.5 py-1 text-sm font-medium text-blue-700">
+            温柔
+            <button class="ml-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full text-blue-400 hover:bg-blue-200 hover:text-blue-600">
+              <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l6 6M9 3l-6 6"/></svg>
+            </button>
+          </span>
+          <span class="inline-flex items-center gap-1 rounded-md bg-blue-50 px-2.5 py-1 text-sm font-medium text-blue-700">
+            知性
+            <button class="ml-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full text-blue-400 hover:bg-blue-200 hover:text-blue-600">
+              <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l6 6M9 3l-6 6"/></svg>
+            </button>
+          </span>
+          <span class="inline-flex items-center gap-1 rounded-md bg-blue-50 px-2.5 py-1 text-sm font-medium text-blue-700">
+            氛围感
+            <button class="ml-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full text-blue-400 hover:bg-blue-200 hover:text-blue-600">
+              <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l6 6M9 3l-6 6"/></svg>
+            </button>
+          </span>
+          <span class="inline-flex items-center gap-1 rounded-md bg-blue-50 px-2.5 py-1 text-sm font-medium text-blue-700">
+            极简
+            <button class="ml-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full text-blue-400 hover:bg-blue-200 hover:text-blue-600">
+              <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l6 6M9 3l-6 6"/></svg>
+            </button>
+          </span>
+        </div>
+        <div class="mt-1.5 flex items-center justify-between px-1">
+          <span class="text-xs text-amber-500">5/5 个标签</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

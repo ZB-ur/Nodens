@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ImageGrid Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="max-w-5xl mx-auto space-y-4">
+
+    <!-- Category Filter Bar -->
+    <div class="flex items-center gap-2 flex-wrap">
+      <button class="px-3 py-1.5 text-sm font-medium rounded-lg bg-blue-600 text-white">
+        全部 <span class="ml-1 opacity-70">12</span>
+      </button>
+      <button class="px-3 py-1.5 text-sm font-medium rounded-lg bg-white text-gray-600 border border-gray-200 hover:bg-gray-50">
+        美妆 <span class="ml-1 opacity-70">5</span>
+      </button>
+      <button class="px-3 py-1.5 text-sm font-medium rounded-lg bg-white text-gray-600 border border-gray-200 hover:bg-gray-50">
+        穿搭 <span class="ml-1 opacity-70">4</span>
+      </button>
+      <button class="px-3 py-1.5 text-sm font-medium rounded-lg bg-white text-gray-600 border border-gray-200 hover:bg-gray-50">
+        美食 <span class="ml-1 opacity-70">2</span>
+      </button>
+      <button class="px-3 py-1.5 text-sm font-medium rounded-lg bg-white text-gray-600 border border-gray-200 hover:bg-gray-50">
+        未分类 <span class="ml-1 opacity-70">1</span>
+      </button>
+    </div>
+
+    <!-- Selection Toolbar -->
+    <div class="flex items-center justify-between bg-white border border-gray-200 rounded-xl px-4 py-2.5">
+      <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer select-none">
+        <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+        全选
+      </label>
+      <span class="text-sm text-blue-600 font-medium">已选 3 张</span>
+    </div>
+
+    <!-- Image Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+
+      <!-- Image 1 - Selected -->
+      <div class="group relative bg-white border border-blue-600 ring-2 ring-blue-100 rounded-xl overflow-hidden">
+        <div class="relative aspect-square bg-gray-100 overflow-hidden">
+          <div class="w-full h-full" style="background: linear-gradient(135deg, #fecdd3 0%, #fda4af 50%, #fb7185 100%);"></div>
+          <div class="absolute top-2 left-2 w-5 h-5 rounded-md border-2 bg-blue-600 border-blue-600 flex items-center justify-center">
+            <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+            </svg>
+          </div>
+        </div>
+        <div class="px-2.5 py-2">
+          <p class="text-xs text-gray-900 font-medium truncate">lipstick-swatch-01.jpg</p>
+          <p class="text-xs text-gray-400 mt-0.5">1080×1080 · 2.3 MB</p>
+          <span class="inline-block mt-1 px-1.5 py-0.5 text-[10px] font-medium bg-blue-50 text-blue-600 rounded">美妆</span>
+        </div>
+      </div>
+
+      <!-- Image 2 - Selected -->
+      <div class="group relative bg-white border border-blue-600 ring-2 ring-blue-100 rounded-xl overflow-hidden">
+        <div class="relative aspect-square bg-gray-100 overflow-hidden">
+          <div class="w-full h-full" style="background: linear-gradient(135deg, #ddd6fe 0%, #c4b5fd 50%, #a78bfa 100%);"></div>
+          <div class="absolute top-2 left-2 w-5 h-5 rounded-md border-2 bg-blue-600 border-blue-600 flex items-center justify-center">
+            <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+            </svg>
+          </div>
+        </div>
+        <div class="px-2.5 py-2">
+          <p class="text-xs text-gray-900 font-medium truncate">eyeshadow-palette.png</p>
+          <p class="text-xs text-gray-400 mt-0.5">1200×900 · 1.8 MB</p>
+          <span class="inline-block mt-1 px-1.5 py-0.5 text-[10px] font-medium bg-blue-50 text-blue-600 rounded">美妆</span>
+        </div>
+      </div>
+
+      <!-- Image 3 - Not selected -->
+      <div class="group relative bg-white border border-gray-200 rounded-xl overflow-hidden">
+        <div class="relative aspect-square bg-gray-100 overflow-hidden">
+          <div class="w-full h-full" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fbbf24 100%);"></div>
+          <div class="absolute top-2 left-2 w-5 h-5 rounded-md border-2 bg-white/80 border-gray-300 flex items-center justify-center"></div>
+        </div>
+        <div class="px-2.5 py-2">
+          <p class="text-xs text-gray-900 font-medium truncate">summer-outfit-look.jpg</p>
+          <p class="text-xs text-gray-400 mt-0.5">1080×1350 · 3.1 MB</p>
+          <span class="inline-block mt-1 px-1.5 py-0.5 text-[10px] font-medium bg-blue-50 text-blue-600 rounded">穿搭</span>
+        </div>
+      </div>
+
+      <!-- Image 4 - Selected -->
+      <div class="group relative bg-white border border-blue-600 ring-2 ring-blue-100 rounded-xl overflow-hidden">
+        <div class="relative aspect-square bg-gray-100 overflow-hidden">
+          <div class="w-full h-full" style="background: linear-gradient(135deg, #bbf7d0 0%, #86efac 50%, #4ade80 100%);"></div>
+          <div class="absolute top-2 left-2 w-5 h-5 rounded-md border-2 bg-blue-600 border-blue-600 flex items-center justify-center">
+            <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+            </svg>
+          </div>
+        </div>
+        <div class="px-2.5 py-2">
+          <p class="text-xs text-gray-900 font-medium truncate">matcha-latte-art.jpg</p>
+          <p class="text-xs text-gray-400 mt-0.5">1080×1080 · 1.5 MB</p>
+          <span class="inline-block mt-1 px-1.5 py-0.5 text-[10px] font-medium bg-blue-50 text-blue-600 rounded">美食</span>
+        </div>
+      </div>
+
+      <!-- Image 5 -->
+      <div class="group relative bg-white border border-gray-200 rounded-xl overflow-hidden">
+        <div class="relative aspect-square bg-gray-100 overflow-hidden">
+          <div class="w-full h-full" style="background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 50%, #818cf8 100%);"></div>
+          <div class="absolute top-2 left-2 w-5 h-5 rounded-md border-2 bg-white/80 border-gray-300 flex items-center justify-center"></div>
+        </div>
+        <div class="px-2.5 py-2">
+          <p class="text-xs text-gray-900 font-medium truncate">skincare-routine.webp</p>
+          <p class="text-xs text-gray-400 mt-0.5">800×800 · 945 KB</p>
+          <span class="inline-block mt-1 px-1.5 py-0.5 text-[10px] font-medium bg-blue-50 text-blue-600 rounded">美妆</span>
+        </div>
+      </div>
+
+      <!-- Image 6 -->
+      <div class="group relative bg-white border border-gray-200 rounded-xl overflow-hidden">
+        <div class="relative aspect-square bg-gray-100 overflow-hidden">
+          <div class="w-full h-full" style="background: linear-gradient(135deg, #fed7aa 0%, #fdba74 50%, #f97316 100%);"></div>
+          <div class="absolute top-2 left-2 w-5 h-5 rounded-md border-2 bg-white/80 border-gray-300 flex items-center justify-center"></div>
+        </div>
+        <div class="px-2.5 py-2">
+          <p class="text-xs text-gray-900 font-medium truncate">autumn-cardigan.jpg</p>
+          <p class="text-xs text-gray-400 mt-0.5">1080×1440 · 2.7 MB</p>
+          <span class="inline-block mt-1 px-1.5 py-0.5 text-[10px] font-medium bg-blue-50 text-blue-600 rounded">穿搭</span>
+        </div>
+      </div>
+
+      <!-- Image 7 -->
+      <div class="group relative bg-white border border-gray-200 rounded-xl overflow-hidden">
+        <div class="relative aspect-square bg-gray-100 overflow-hidden">
+          <div class="w-full h-full" style="background: linear-gradient(135deg, #fbcfe8 0%, #f9a8d4 50%, #ec4899 100%);"></div>
+          <div class="absolute top-2 left-2 w-5 h-5 rounded-md border-2 bg-white/80 border-gray-300 flex items-center justify-center"></div>
+        </div>
+        <div class="px-2.5 py-2">
+          <p class="text-xs text-gray-900 font-medium truncate">blush-review-02.png</p>
+          <p class="text-xs text-gray-400 mt-0.5">1200×1200 · 2.0 MB</p>
+          <span class="inline-block mt-1 px-1.5 py-0.5 text-[10px] font-medium bg-blue-50 text-blue-600 rounded">美妆</span>
+        </div>
+      </div>
+
+      <!-- Image 8 -->
+      <div class="group relative bg-white border border-gray-200 rounded-xl overflow-hidden">
+        <div class="relative aspect-square bg-gray-100 overflow-hidden">
+          <div class="w-full h-full" style="background: linear-gradient(135deg, #d1fae5 0%, #6ee7b7 50%, #34d399 100%);"></div>
+          <div class="absolute top-2 left-2 w-5 h-5 rounded-md border-2 bg-white/80 border-gray-300 flex items-center justify-center"></div>
+        </div>
+        <div class="px-2.5 py-2">
+          <p class="text-xs text-gray-900 font-medium truncate">street-style-01.jpg</p>
+          <p class="text-xs text-gray-400 mt-0.5">1080×1350 · 2.9 MB</p>
+          <span class="inline-block mt-1 px-1.5 py-0.5 text-[10px] font-medium bg-blue-50 text-blue-600 rounded">穿搭</span>
+        </div>
+      </div>
+
+      <!-- Image 9 -->
+      <div class="group relative bg-white border border-gray-200 rounded-xl overflow-hidden">
+        <div class="relative aspect-square bg-gray-100 overflow-hidden">
+          <div class="w-full h-full" style="background: linear-gradient(135deg, #fce7f3 0%, #f472b6 50%, #db2777 100%);"></div>
+          <div class="absolute top-2 left-2 w-5 h-5 rounded-md border-2 bg-white/80 border-gray-300 flex items-center justify-center"></div>
+        </div>
+        <div class="px-2.5 py-2">
+          <p class="text-xs text-gray-900 font-medium truncate">foundation-test.jpg</p>
+          <p class="text-xs text-gray-400 mt-0.5">1080×1080 · 1.2 MB</p>
+          <span class="inline-block mt-1 px-1.5 py-0.5 text-[10px] font-medium bg-blue-50 text-blue-600 rounded">美妆</span>
+        </div>
+      </div>
+
+      <!-- Image 10 -->
+      <div class="group relative bg-white border border-gray-200 rounded-xl overflow-hidden">
+        <div class="relative aspect-square bg-gray-100 overflow-hidden">
+          <div class="w-full h-full" style="background: linear-gradient(135deg, #e0f2fe 0%, #7dd3fc 50%, #0ea5e9 100%);"></div>
+          <div class="absolute top-2 left-2 w-5 h-5 rounded-md border-2 bg-white/80 border-gray-300 flex items-center justify-center"></div>
+        </div>
+        <div class="px-2.5 py-2">
+          <p class="text-xs text-gray-900 font-medium truncate">denim-jacket-ootd.webp</p>
+          <p class="text-xs text-gray-400 mt-0.5">900×1200 · 1.6 MB</p>
+          <span class="inline-block mt-1 px-1.5 py-0.5 text-[10px] font-medium bg-blue-50 text-blue-600 rounded">穿搭</span>
+        </div>
+      </div>
+
+      <!-- Image 11 -->
+      <div class="group relative bg-white border border-gray-200 rounded-xl overflow-hidden">
+        <div class="relative aspect-square bg-gray-100 overflow-hidden">
+          <div class="w-full h-full" style="background: linear-gradient(135deg, #fef9c3 0%, #fde047 50%, #eab308 100%);"></div>
+          <div class="absolute top-2 left-2 w-5 h-5 rounded-md border-2 bg-white/80 border-gray-300 flex items-center justify-center"></div>
+        </div>
+        <div class="px-2.5 py-2">
+          <p class="text-xs text-gray-900 font-medium truncate">brunch-flatlay.jpg</p>
+          <p class="text-xs text-gray-400 mt-0.5">1080×1080 · 2.1 MB</p>
+          <span class="inline-block mt-1 px-1.5 py-0.5 text-[10px] font-medium bg-blue-50 text-blue-600 rounded">美食</span>
+        </div>
+      </div>
+
+      <!-- Image 12 - No category -->
+      <div class="group relative bg-white border border-gray-200 rounded-xl overflow-hidden">
+        <div class="relative aspect-square bg-gray-100 overflow-hidden">
+          <div class="w-full h-full" style="background: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 50%, #94a3b8 100%);"></div>
+          <div class="absolute top-2 left-2 w-5 h-5 rounded-md border-2 bg-white/80 border-gray-300 flex items-center justify-center"></div>
+        </div>
+        <div class="px-2.5 py-2">
+          <p class="text-xs text-gray-900 font-medium truncate">IMG_20240315_142356.jpg</p>
+          <p class="text-xs text-gray-400 mt-0.5">4032×3024 · 4.8 MB</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

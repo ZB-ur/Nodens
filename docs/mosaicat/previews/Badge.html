@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Badge Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="space-y-6 max-w-md mx-auto">
+    <h2 class="text-lg font-semibold text-gray-900">Badge</h2>
+
+    <!-- Variants -->
+    <div class="space-y-3">
+      <p class="text-sm font-medium text-gray-600">Variants</p>
+      <div class="flex items-center gap-4">
+        <span class="inline-flex items-center justify-center rounded-full px-2 py-0.5 text-xs font-semibold leading-none bg-blue-100 text-blue-700">3</span>
+        <span class="inline-flex items-center justify-center rounded-full px-2 py-0.5 text-xs font-semibold leading-none bg-red-100 text-red-700">5</span>
+        <span class="inline-flex items-center justify-center rounded-full px-2 py-0.5 text-xs font-semibold leading-none bg-amber-100 text-amber-700">12</span>
+        <span class="inline-flex items-center justify-center rounded-full px-2 py-0.5 text-xs font-semibold leading-none bg-emerald-100 text-emerald-700">OK</span>
+      </div>
+    </div>
+
+    <!-- Count overflow -->
+    <div class="space-y-3">
+      <p class="text-sm font-medium text-gray-600">Count Overflow</p>
+      <div class="flex items-center gap-4">
+        <span class="inline-flex items-center justify-center rounded-full px-2 py-0.5 text-xs font-semibold leading-none bg-red-100 text-red-700">99+</span>
+      </div>
+    </div>
+
+    <!-- In context (nav item) -->
+    <div class="space-y-3">
+      <p class="text-sm font-medium text-gray-600">In Context</p>
+      <div class="space-y-1">
+        <div class="flex items-center justify-between rounded-lg px-3 py-2 bg-white border border-gray-200">
+          <span class="text-sm text-gray-900">发布记录</span>
+          <span class="inline-flex items-center justify-center rounded-full px-2 py-0.5 text-xs font-semibold leading-none bg-red-100 text-red-700">3</span>
+        </div>
+        <div class="flex items-center justify-between rounded-lg px-3 py-2 bg-white border border-gray-200">
+          <span class="text-sm text-gray-900">草稿箱</span>
+          <span class="inline-flex items-center justify-center rounded-full px-2 py-0.5 text-xs font-semibold leading-none bg-blue-100 text-blue-700">8</span>
+        </div>
+        <div class="flex items-center justify-between rounded-lg px-3 py-2 bg-white border border-gray-200">
+          <span class="text-sm text-gray-900">告警</span>
+          <span class="inline-flex items-center justify-center rounded-full px-2 py-0.5 text-xs font-semibold leading-none bg-amber-100 text-amber-700">2</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

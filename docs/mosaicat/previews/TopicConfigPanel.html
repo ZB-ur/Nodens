@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TopicConfigPanel Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="max-w-2xl mx-auto">
+    <!-- TopicConfigPanel -->
+    <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
+
+      <!-- Header -->
+      <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+        <div>
+          <h2 class="text-lg font-semibold text-gray-900">主题配置</h2>
+          <p class="text-sm text-gray-500 mt-0.5">设置账号的内容方向，用于 AI 生成文案时的参考</p>
+        </div>
+        <span class="text-xs text-gray-400">上次更新：2026/03/20</span>
+      </div>
+
+      <!-- Body -->
+      <div class="p-6 space-y-6">
+
+        <!-- Section 1: Preset Topic Selector -->
+        <section>
+          <label class="block text-sm font-medium text-gray-900 mb-2">
+            主题标签 <span class="text-red-500">*</span>
+          </label>
+          <p class="text-xs text-gray-500 mb-3">选择与账号内容方向相关的主题，至少选择 1 个</p>
+
+          <!-- Preset buttons -->
+          <div class="flex flex-wrap gap-2">
+            <!-- Selected -->
+            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium border bg-blue-50 border-blue-300 text-blue-700">
+              <span>💄</span><span>美妆</span>
+              <svg class="w-3.5 h-3.5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </button>
+            <!-- Selected -->
+            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium border bg-blue-50 border-blue-300 text-blue-700">
+              <span>👗</span><span>穿搭</span>
+              <svg class="w-3.5 h-3.5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </button>
+            <!-- Unselected -->
+            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium border bg-white border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+              <span>🍜</span><span>美食</span>
+            </button>
+            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium border bg-white border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+              <span>✈️</span><span>旅行</span>
+            </button>
+            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium border bg-white border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+              <span>🏠</span><span>家居</span>
+            </button>
+            <!-- Selected -->
+            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium border bg-blue-50 border-blue-300 text-blue-700">
+              <span>💪</span><span>健身</span>
+              <svg class="w-3.5 h-3.5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </button>
+            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium border bg-white border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+              <span>📚</span><span>读书</span>
+            </button>
+            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium border bg-white border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+              <span>🐱</span><span>萌宠</span>
+            </button>
+            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium border bg-white border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+              <span>📷</span><span>摄影</span>
+            </button>
+          </div>
+
+          <!-- Selected summary tags -->
+          <div class="mt-3 flex flex-wrap gap-1.5">
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-600 text-white text-xs rounded-md">
+              美妆
+              <button class="opacity-70 hover:opacity-100">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </span>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-600 text-white text-xs rounded-md">
+              穿搭
+              <button class="opacity-70 hover:opacity-100">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </span>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-600 text-white text-xs rounded-md">
+              健身
+              <button class="opacity-70 hover:opacity-100">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </span>
+          </div>
+        </section>
+
+        <!-- Section 2: Keywords TagInput -->
+        <section>
+          <label class="block text-sm font-medium text-gray-900 mb-2">自定义关键词</label>
+          <p class="text-xs text-gray-500 mb-3">添加你希望在生成内容中出现的关键词</p>
+          <div class="flex flex-wrap items-center gap-2 px-3 py-2 border border-gray-200 rounded-lg bg-white min-h-[42px]">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 bg-blue-50 text-blue-700 text-sm rounded-md">
+              日常护肤
+              <button class="text-blue-400 hover:text-blue-600">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 bg-blue-50 text-blue-700 text-sm rounded-md">
+              平价好物
+              <button class="text-blue-400 hover:text-blue-600">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 bg-blue-50 text-blue-700 text-sm rounded-md">
+              OOTD
+              <button class="text-blue-400 hover:text-blue-600">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 bg-blue-50 text-blue-700 text-sm rounded-md">
+              居家健身
+              <button class="text-blue-400 hover:text-blue-600">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </span>
+            <input type="text" placeholder="" class="flex-1 min-w-[120px] outline-none text-sm text-gray-900 placeholder-gray-400 bg-transparent" />
+            <span class="text-xs text-gray-400 ml-auto whitespace-nowrap">4/20</span>
+          </div>
+        </section>
+
+        <!-- Section 3: Style Description -->
+        <section>
+          <label class="block text-sm font-medium text-gray-900 mb-2">风格描述</label>
+          <p class="text-xs text-gray-500 mb-3">描述内容风格偏好，例如"轻松活泼的种草文风"</p>
+          <div class="relative">
+            <textarea
+              rows="4"
+              class="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 resize-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 outline-none"
+            >清新自然的种草文风，多用 emoji 表情，语气亲切可爱，适合 20-30 岁女性阅读。内容以分享体验为主，避免过于商业化的推广语气。</textarea>
+            <span class="absolute bottom-2 right-3 text-xs text-gray-400">68/500</span>
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer -->
+      <div class="flex items-center justify-end gap-3 px-6 py-4 border-t border-gray-100 bg-slate-50 rounded-b-xl">
+        <span class="text-xs text-amber-600 mr-auto">● 有未保存的修改</span>
+        <button class="inline-flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium bg-blue-600 text-white hover:bg-blue-700 shadow-sm">
+          保存配置
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

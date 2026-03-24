@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ImagePickerDrawer Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 0; background: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+  </style>
+</head>
+<body>
+  <!-- Backdrop -->
+  <div class="fixed inset-0 bg-black/40 z-40"></div>
+
+  <!-- Drawer -->
+  <div class="fixed inset-y-0 right-0 w-full max-w-lg bg-white z-50 shadow-xl flex flex-col">
+    <!-- Header -->
+    <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+      <h2 class="text-lg font-semibold text-gray-900">选择图片</h2>
+      <button class="p-1 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex border-b border-gray-200 px-6">
+      <button class="py-3 px-4 text-sm font-medium border-b-2 border-blue-600 text-blue-600">
+        素材库
+      </button>
+      <button class="py-3 px-4 text-sm font-medium border-b-2 border-transparent text-gray-500">
+        已选 (3/9)
+      </button>
+    </div>
+
+    <!-- Content -->
+    <div class="flex-1 overflow-y-auto">
+      <div class="p-4">
+        <!-- Category Filter -->
+        <div class="flex gap-2 mb-4 overflow-x-auto pb-2">
+          <button class="px-3 py-1.5 rounded-lg text-sm whitespace-nowrap bg-blue-600 text-white">全部</button>
+          <button class="px-3 py-1.5 rounded-lg text-sm whitespace-nowrap bg-gray-100 text-gray-600">美妆 (24)</button>
+          <button class="px-3 py-1.5 rounded-lg text-sm whitespace-nowrap bg-gray-100 text-gray-600">美食 (18)</button>
+          <button class="px-3 py-1.5 rounded-lg text-sm whitespace-nowrap bg-gray-100 text-gray-600">穿搭 (12)</button>
+          <button class="px-3 py-1.5 rounded-lg text-sm whitespace-nowrap bg-gray-100 text-gray-600">旅行 (9)</button>
+        </div>
+
+        <!-- Image Grid -->
+        <div class="grid grid-cols-3 gap-3">
+          <!-- Selected 1 -->
+          <div class="relative aspect-square rounded-xl overflow-hidden border-2 border-blue-600 ring-2 ring-blue-600/20 cursor-pointer">
+            <div class="w-full h-full" style="background: linear-gradient(135deg, #fda4af 0%, #fb923c 100%);"></div>
+            <div class="absolute top-2 right-2 w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold">1</div>
+          </div>
+          <!-- Selected 2 -->
+          <div class="relative aspect-square rounded-xl overflow-hidden border-2 border-blue-600 ring-2 ring-blue-600/20 cursor-pointer">
+            <div class="w-full h-full" style="background: linear-gradient(135deg, #86efac 0%, #22d3ee 100%);"></div>
+            <div class="absolute top-2 right-2 w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold">2</div>
+          </div>
+          <!-- Selected 3 -->
+          <div class="relative aspect-square rounded-xl overflow-hidden border-2 border-blue-600 ring-2 ring-blue-600/20 cursor-pointer">
+            <div class="w-full h-full" style="background: linear-gradient(135deg, #c4b5fd 0%, #f0abfc 100%);"></div>
+            <div class="absolute top-2 right-2 w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold">3</div>
+          </div>
+          <!-- Unselected -->
+          <div class="relative aspect-square rounded-xl overflow-hidden border-2 border-gray-200 hover:border-blue-400 cursor-pointer group">
+            <div class="w-full h-full" style="background: linear-gradient(135deg, #fde68a 0%, #fdba74 100%);"></div>
+            <div class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/80 border border-gray-300"></div>
+          </div>
+          <div class="relative aspect-square rounded-xl overflow-hidden border-2 border-gray-200 hover:border-blue-400 cursor-pointer group">
+            <div class="w-full h-full" style="background: linear-gradient(135deg, #93c5fd 0%, #6366f1 100%);"></div>
+            <div class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/80 border border-gray-300"></div>
+          </div>
+          <div class="relative aspect-square rounded-xl overflow-hidden border-2 border-gray-200 hover:border-blue-400 cursor-pointer group">
+            <div class="w-full h-full" style="background: linear-gradient(135deg, #fca5a5 0%, #ef4444 100%);"></div>
+            <div class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/80 border border-gray-300"></div>
+          </div>
+          <div class="relative aspect-square rounded-xl overflow-hidden border-2 border-gray-200 hover:border-blue-400 cursor-pointer group">
+            <div class="w-full h-full" style="background: linear-gradient(135deg, #a7f3d0 0%, #34d399 100%);"></div>
+            <div class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/80 border border-gray-300"></div>
+          </div>
+          <div class="relative aspect-square rounded-xl overflow-hidden border-2 border-gray-200 hover:border-blue-400 cursor-pointer group">
+            <div class="w-full h-full" style="background: linear-gradient(135deg, #e9d5ff 0%, #a78bfa 100%);"></div>
+            <div class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/80 border border-gray-300"></div>
+          </div>
+          <div class="relative aspect-square rounded-xl overflow-hidden border-2 border-gray-200 hover:border-blue-400 cursor-pointer group">
+            <div class="w-full h-full" style="background: linear-gradient(135deg, #bae6fd 0%, #38bdf8 100%);"></div>
+            <div class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/80 border border-gray-300"></div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex items-center justify-center gap-2 mt-4">
+          <button class="px-3 py-1.5 text-sm rounded-lg bg-gray-100 text-gray-600 opacity-40 cursor-not-allowed">上一页</button>
+          <span class="text-sm text-gray-500">1 / 4</span>
+          <button class="px-3 py-1.5 text-sm rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200">下一页</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="px-6 py-4 border-t border-gray-200 flex items-center justify-between bg-white">
+      <p class="text-sm text-gray-500">
+        已选 <span class="font-semibold text-gray-900">3</span> / 9 张
+      </p>
+      <div class="flex gap-3">
+        <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">取消</button>
+        <button class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors">确认选择</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

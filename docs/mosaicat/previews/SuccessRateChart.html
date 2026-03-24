@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SuccessRateChart Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }
+    @keyframes donut-fill {
+      from { stroke-dashoffset: 339.29; }
+    }
+    .animate-donut { animation: donut-fill 0.8s ease-out forwards; }
+  </style>
+</head>
+<body>
+  <div class="max-w-sm">
+    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">发布成功率</h3>
+
+      <div class="flex items-center gap-6">
+        <!-- Donut Chart -->
+        <div class="relative w-32 h-32 flex-shrink-0">
+          <svg class="w-full h-full" viewBox="0 0 120 120" style="transform: rotate(-90deg);">
+            <!-- Background circle -->
+            <circle cx="60" cy="60" r="54" fill="none" stroke="#f1f5f9" stroke-width="10" />
+            <!-- Failed arc (8/50 = 16%) -->
+            <circle cx="60" cy="60" r="54" fill="none" stroke="#ef4444" stroke-width="10"
+              stroke-dasharray="339.29"
+              stroke-dashoffset="284.98"
+              stroke-linecap="round" />
+            <!-- Success arc (42/50 = 84%) -->
+            <circle cx="60" cy="60" r="54" fill="none" stroke="#10b981" stroke-width="10"
+              stroke-dasharray="339.29"
+              stroke-dashoffset="54.29"
+              stroke-linecap="round"
+              class="animate-donut" />
+          </svg>
+          <!-- Center text -->
+          <div class="absolute inset-0 flex flex-col items-center justify-center">
+            <span class="text-2xl font-bold text-emerald-500">84%</span>
+            <span class="text-xs text-gray-400">成功率</span>
+          </div>
+        </div>
+
+        <!-- Stats breakdown -->
+        <div class="flex flex-col gap-3 flex-1">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-gray-300"></span>
+              <span class="text-sm text-gray-600">总发布</span>
+            </div>
+            <span class="text-sm font-semibold text-gray-900">50</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+              <span class="text-sm text-gray-600">成功</span>
+            </div>
+            <span class="text-sm font-semibold text-emerald-600">42</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+              <span class="text-sm text-gray-600">失败</span>
+            </div>
+            <span class="text-sm font-semibold text-red-500">8</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
