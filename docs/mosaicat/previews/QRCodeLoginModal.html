@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QRCodeLoginModal Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 0; background: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+  </style>
+</head>
+<body>
+  <!-- Backdrop -->
+  <div class="fixed inset-0 z-50 flex items-center justify-center">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+    <!-- Modal -->
+    <div class="relative bg-white rounded-xl shadow-lg w-full max-w-sm mx-4 overflow-hidden">
+      <!-- Header -->
+      <div class="flex items-center justify-between px-6 pt-6 pb-2">
+        <h2 class="text-lg font-semibold text-gray-900">扫码登录</h2>
+        <button class="p-1 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Body -->
+      <div class="px-6 pb-6 flex flex-col items-center">
+        <p class="text-sm text-gray-600 mb-4">打开小红书 App 扫描下方二维码</p>
+
+        <!-- QR Code Area -->
+        <div class="relative w-52 h-52 rounded-xl border-2 border-gray-200 bg-slate-50 flex items-center justify-center mb-4">
+          <!-- Mock QR Code Pattern -->
+          <svg width="176" height="176" viewBox="0 0 176 176" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- QR Code mock pattern using rectangles -->
+            <rect width="176" height="176" fill="white"/>
+            <!-- Top-left finder -->
+            <rect x="8" y="8" width="48" height="48" stroke="#1a1a1a" stroke-width="6" fill="none"/>
+            <rect x="18" y="18" width="28" height="28" fill="#1a1a1a"/>
+            <!-- Top-right finder -->
+            <rect x="120" y="8" width="48" height="48" stroke="#1a1a1a" stroke-width="6" fill="none"/>
+            <rect x="130" y="18" width="28" height="28" fill="#1a1a1a"/>
+            <!-- Bottom-left finder -->
+            <rect x="8" y="120" width="48" height="48" stroke="#1a1a1a" stroke-width="6" fill="none"/>
+            <rect x="18" y="130" width="28" height="28" fill="#1a1a1a"/>
+            <!-- Data modules (decorative) -->
+            <rect x="64" y="8" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="80" y="8" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="96" y="8" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="64" y="24" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="96" y="24" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="80" y="40" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="64" y="56" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="72" y="64" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="88" y="64" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="104" y="64" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="8" y="72" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="24" y="72" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="40" y="72" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="64" y="72" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="80" y="72" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="96" y="72" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="120" y="72" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="136" y="72" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="152" y="72" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="64" y="80" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="96" y="80" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="72" y="88" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="88" y="88" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="104" y="88" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="64" y="96" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="80" y="96" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="96" y="96" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="64" y="104" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="80" y="104" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="120" y="96" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="136" y="96" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="152" y="96" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="120" y="112" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="144" y="112" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="120" y="128" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="136" y="128" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="152" y="128" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="120" y="144" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="144" y="144" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="120" y="160" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="136" y="160" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="152" y="160" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="64" y="120" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="80" y="120" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="96" y="120" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="72" y="136" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="88" y="136" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="64" y="152" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="80" y="152" width="8" height="8" fill="#1a1a1a"/>
+            <rect x="96" y="152" width="8" height="8" fill="#1a1a1a"/>
+          </svg>
+        </div>
+
+        <!-- Status & Countdown -->
+        <div class="flex flex-col items-center gap-1">
+          <div class="flex items-center gap-2">
+            <span class="text-sm">📱</span>
+            <span class="text-sm font-medium text-gray-600">等待扫码</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-xs text-gray-400">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>1:47 后过期</span>
+          </div>
+          <!-- Countdown progress bar -->
+          <div class="w-40 h-1 bg-gray-100 rounded-full mt-2 overflow-hidden">
+            <div class="h-full bg-blue-500 rounded-full" style="width: 73%"></div>
+          </div>
+        </div>
+
+        <!-- Divider & help text -->
+        <div class="w-full border-t border-gray-100 mt-5 pt-4">
+          <p class="text-xs text-gray-400 text-center leading-relaxed">
+            首次登录将自动创建账号。扫码即表示同意使用 Cookie 进行自动化操作。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SelectorVersionHistory Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="max-w-3xl mx-auto">
+    <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
+      <!-- Header -->
+      <div class="px-6 py-4 border-b border-gray-200">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg font-semibold text-gray-900">选择器版本历史</h2>
+            <p class="text-sm text-gray-600 mt-0.5">共 4 个版本，点击查看 diff 详情</p>
+          </div>
+          <div class="flex items-center gap-1.5 px-2.5 py-1 bg-blue-50 text-blue-600 rounded-lg text-sm font-medium">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            4 版本
+          </div>
+        </div>
+      </div>
+
+      <div class="divide-y divide-gray-100">
+        <!-- Version 1 (Current, Expanded) -->
+        <div class="group">
+          <div class="px-6 py-4 flex items-start gap-4 cursor-pointer hover:bg-slate-50 transition-colors">
+            <div class="flex flex-col items-center pt-1">
+              <div class="w-3 h-3 rounded-full border-2 border-blue-600 bg-blue-600"></div>
+              <div class="w-px bg-gray-200 mt-1" style="min-height: 20px;"></div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-sm font-semibold text-gray-900">v1.4.0</span>
+                <span class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">当前版本</span>
+              </div>
+              <p class="text-sm text-gray-600 truncate">修复发布按钮选择器，适配小红书 2024.03 改版</p>
+              <p class="text-xs text-gray-400 mt-1">2026/03/24 14:30</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="p-1.5 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
+                <svg class="w-4 h-4 rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <!-- Expanded diff -->
+          <div class="mx-6 mb-4 border border-gray-200 rounded-lg overflow-hidden">
+            <div class="px-3 py-2 bg-gray-50 border-b border-gray-200 flex items-center gap-2">
+              <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              </svg>
+              <span class="text-xs font-medium text-gray-600">变更差异</span>
+            </div>
+            <div class="overflow-x-auto text-xs leading-relaxed">
+              <div class="px-3 py-0.5 text-sm font-mono whitespace-pre bg-blue-50 text-blue-600">@@ publish.submitButton @@</div>
+              <div class="px-3 py-0.5 text-sm font-mono whitespace-pre bg-red-50 text-red-700">- "button.submit-btn.primary"</div>
+              <div class="px-3 py-0.5 text-sm font-mono whitespace-pre bg-emerald-50 text-emerald-700">+ "button[data-type='submit'].pub-btn"</div>
+              <div class="px-3 py-0.5 text-sm font-mono whitespace-pre text-gray-500">  "confirmButton": ".confirm-dialog .ok"</div>
+              <div class="px-3 py-0.5 text-sm font-mono whitespace-pre bg-blue-50 text-blue-600">@@ publish.confirmButton @@</div>
+              <div class="px-3 py-0.5 text-sm font-mono whitespace-pre bg-red-50 text-red-700">- ".confirm-dialog .ok"</div>
+              <div class="px-3 py-0.5 text-sm font-mono whitespace-pre bg-emerald-50 text-emerald-700">+ ".modal-confirm .btn-primary"</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Version 2 (Collapsed, with rollback) -->
+        <div class="group">
+          <div class="px-6 py-4 flex items-start gap-4 cursor-pointer hover:bg-slate-50 transition-colors">
+            <div class="flex flex-col items-center pt-1">
+              <div class="w-3 h-3 rounded-full border-2 border-gray-300 bg-white"></div>
+              <div class="w-px bg-gray-200 mt-1" style="min-height: 20px;"></div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-sm font-semibold text-gray-900">v1.3.0</span>
+              </div>
+              <p class="text-sm text-gray-600 truncate">更新标题输入框选择器，增加 hashtag 输入支持</p>
+              <p class="text-xs text-gray-400 mt-1">2026/03/20 09:15</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors">回滚</button>
+              <button class="p-1.5 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
+                <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Version 3 (Collapsed, rollback confirming) -->
+        <div class="group">
+          <div class="px-6 py-4 flex items-start gap-4 cursor-pointer hover:bg-slate-50 transition-colors">
+            <div class="flex flex-col items-center pt-1">
+              <div class="w-3 h-3 rounded-full border-2 border-gray-300 bg-white"></div>
+              <div class="w-px bg-gray-200 mt-1" style="min-height: 20px;"></div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-sm font-semibold text-gray-900">v1.2.0</span>
+              </div>
+              <p class="text-sm text-gray-600 truncate">添加登录页面扫码确认选择器</p>
+              <p class="text-xs text-gray-400 mt-1">2026/03/15 16:42</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-red-500 text-white hover:bg-red-600 transition-colors">确认回滚</button>
+              <button class="p-1.5 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
+                <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Version 4 (Oldest) -->
+        <div class="group">
+          <div class="px-6 py-4 flex items-start gap-4 cursor-pointer hover:bg-slate-50 transition-colors">
+            <div class="flex flex-col items-center pt-1">
+              <div class="w-3 h-3 rounded-full border-2 border-gray-300 bg-white"></div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-sm font-semibold text-gray-900">v1.1.0</span>
+              </div>
+              <p class="text-sm text-gray-600 truncate">初始选择器配置，覆盖登录和发布流程</p>
+              <p class="text-xs text-gray-400 mt-1">2026/03/10 11:00</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors">回滚</button>
+              <button class="p-1.5 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
+                <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

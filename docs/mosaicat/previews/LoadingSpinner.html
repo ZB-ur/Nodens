@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LoadingSpinner Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="space-y-6 max-w-md mx-auto">
+    <h2 class="text-lg font-semibold text-gray-900">LoadingSpinner</h2>
+
+    <!-- Sizes -->
+    <div class="space-y-3">
+      <p class="text-sm font-medium text-gray-600">Sizes</p>
+      <div class="flex items-center gap-8">
+        <div class="flex flex-col items-center gap-2">
+          <div class="animate-spin rounded-full h-4 w-4 border-2 border-blue-600 border-t-transparent"></div>
+          <span class="text-xs text-gray-400">Small</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <div class="animate-spin rounded-full h-8 w-8 border-2 border-blue-600 border-t-transparent"></div>
+          <span class="text-xs text-gray-400">Medium</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <div class="animate-spin rounded-full h-12 w-12 border-[3px] border-blue-600 border-t-transparent"></div>
+          <span class="text-xs text-gray-400">Large</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- With text -->
+    <div class="space-y-3">
+      <p class="text-sm font-medium text-gray-600">With Text</p>
+      <div class="flex flex-col items-center justify-center gap-3 py-8 bg-white rounded-xl border border-gray-200">
+        <div class="animate-spin rounded-full h-8 w-8 border-2 border-blue-600 border-t-transparent"></div>
+        <p class="text-sm text-gray-600">正在加载...</p>
+      </div>
+    </div>
+
+    <!-- Fullscreen simulation -->
+    <div class="space-y-3">
+      <p class="text-sm font-medium text-gray-600">Fullscreen (simulated)</p>
+      <div class="relative h-48 bg-white rounded-xl border border-gray-200 overflow-hidden">
+        <div class="absolute inset-0 flex items-center justify-center bg-slate-50/80 backdrop-blur-sm">
+          <div class="flex flex-col items-center justify-center gap-3">
+            <div class="animate-spin rounded-full h-12 w-12 border-[3px] border-blue-600 border-t-transparent"></div>
+            <p class="text-sm text-gray-600">发布中，请稍候...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

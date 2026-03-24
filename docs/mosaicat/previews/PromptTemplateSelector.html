@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PromptTemplateSelector Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }
+    .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  </style>
+</head>
+<body>
+  <div class="max-w-2xl mx-auto space-y-4">
+    <!-- Header -->
+    <div class="flex items-center justify-between">
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900">Prompt 模板</h3>
+        <p class="text-sm text-gray-600 mt-0.5">选择一个模板来生成文案，或创建自定义模板</p>
+      </div>
+      <button class="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+        新建模板
+      </button>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="flex gap-1 p-1 bg-gray-100 rounded-lg w-fit">
+      <button class="px-3 py-1.5 text-sm font-medium rounded-md bg-white text-gray-900 shadow-sm">
+        全部 <span class="ml-1.5 text-xs text-gray-500">5</span>
+      </button>
+      <button class="px-3 py-1.5 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900">
+        内置 <span class="ml-1.5 text-xs text-gray-400">3</span>
+      </button>
+      <button class="px-3 py-1.5 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900">
+        自定义 <span class="ml-1.5 text-xs text-gray-400">2</span>
+      </button>
+    </div>
+
+    <!-- Template Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+      <!-- Template 1: Built-in, SELECTED -->
+      <div class="relative group cursor-pointer border border-blue-600 bg-blue-50/50 ring-1 ring-blue-600 rounded-xl p-4">
+        <div class="absolute top-3 right-3 w-5 h-5 rounded-full border-2 border-blue-600 bg-blue-600 flex items-center justify-center">
+          <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+          </svg>
+        </div>
+        <div class="pr-8">
+          <div class="flex items-center gap-2 mb-1">
+            <h4 class="text-sm font-semibold text-gray-900 truncate">小红书种草笔记</h4>
+            <span class="flex-shrink-0 px-1.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-500 rounded">内置</span>
+          </div>
+          <p class="text-xs text-gray-500 line-clamp-2 mb-2">适合产品推荐和使用体验分享，自带 emoji 和口语化风格</p>
+          <div class="text-xs text-gray-400 font-mono bg-gray-50 rounded-md px-2 py-1.5 line-clamp-2 border border-gray-100">
+            你是一个小红书博主，请根据以下主题 {{topics}} 和关键词 {{keywords}} 生成一篇种草笔记...
+          </div>
+        </div>
+      </div>
+
+      <!-- Template 2: Built-in -->
+      <div class="relative group cursor-pointer border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm rounded-xl p-4">
+        <div class="absolute top-3 right-3 w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center"></div>
+        <div class="pr-8">
+          <div class="flex items-center gap-2 mb-1">
+            <h4 class="text-sm font-semibold text-gray-900 truncate">知识干货分享</h4>
+            <span class="flex-shrink-0 px-1.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-500 rounded">内置</span>
+          </div>
+          <p class="text-xs text-gray-500 line-clamp-2 mb-2">适合教程类、知识科普类内容，结构清晰带编号列表</p>
+          <div class="text-xs text-gray-400 font-mono bg-gray-50 rounded-md px-2 py-1.5 line-clamp-2 border border-gray-100">
+            请以专业但易懂的方式，围绕 {{topics}} 撰写一篇干货分享笔记，包含 3-5 个要点...
+          </div>
+        </div>
+      </div>
+
+      <!-- Template 3: Built-in -->
+      <div class="relative group cursor-pointer border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm rounded-xl p-4">
+        <div class="absolute top-3 right-3 w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center"></div>
+        <div class="pr-8">
+          <div class="flex items-center gap-2 mb-1">
+            <h4 class="text-sm font-semibold text-gray-900 truncate">生活日常 Vlog 文案</h4>
+            <span class="flex-shrink-0 px-1.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-500 rounded">内置</span>
+          </div>
+          <p class="text-xs text-gray-500 line-clamp-2 mb-2">轻松随意的生活分享风格，适合日常记录和心情表达</p>
+          <div class="text-xs text-gray-400 font-mono bg-gray-50 rounded-md px-2 py-1.5 line-clamp-2 border border-gray-100">
+            用轻松自然的语气，围绕 {{topics}} 写一篇生活分享，像跟朋友聊天一样...
+          </div>
+        </div>
+      </div>
+
+      <!-- Template 4: Custom -->
+      <div class="relative group cursor-pointer border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm rounded-xl p-4">
+        <div class="absolute top-3 right-3 w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center"></div>
+        <div class="pr-8">
+          <div class="flex items-center gap-2 mb-1">
+            <h4 class="text-sm font-semibold text-gray-900 truncate">美妆测评专用</h4>
+            <span class="flex-shrink-0 px-1.5 py-0.5 text-xs font-medium bg-blue-100 text-blue-600 rounded">自定义</span>
+          </div>
+          <p class="text-xs text-gray-500 line-clamp-2 mb-2">针对美妆产品测评优化的模板，包含成分分析和使用感受</p>
+          <div class="text-xs text-gray-400 font-mono bg-gray-50 rounded-md px-2 py-1.5 line-clamp-2 border border-gray-100">
+            作为美妆博主，请对 {{keywords}} 进行详细测评，包括质地、持妆、性价比...
+          </div>
+        </div>
+        <!-- Custom actions -->
+        <div class="flex items-center gap-1 mt-3 pt-3 border-t border-gray-100">
+          <button class="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Z" />
+            </svg>
+            编辑
+          </button>
+          <button class="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-600 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+            </svg>
+            删除
+          </button>
+        </div>
+      </div>
+
+      <!-- Template 5: Custom -->
+      <div class="relative group cursor-pointer border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm rounded-xl p-4">
+        <div class="absolute top-3 right-3 w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center"></div>
+        <div class="pr-8">
+          <div class="flex items-center gap-2 mb-1">
+            <h4 class="text-sm font-semibold text-gray-900 truncate">探店打卡模板</h4>
+            <span class="flex-shrink-0 px-1.5 py-0.5 text-xs font-medium bg-blue-100 text-blue-600 rounded">自定义</span>
+          </div>
+          <p class="text-xs text-gray-500 line-clamp-2 mb-2">餐厅、咖啡厅、景点打卡专用，突出氛围感和推荐理由</p>
+          <div class="text-xs text-gray-400 font-mono bg-gray-50 rounded-md px-2 py-1.5 line-clamp-2 border border-gray-100">
+            以探店博主视角，分享 {{keywords}} 的打卡体验，重点描述环境氛围和推荐菜品...
+          </div>
+        </div>
+        <!-- Custom actions -->
+        <div class="flex items-center gap-1 mt-3 pt-3 border-t border-gray-100">
+          <button class="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Z" />
+            </svg>
+            编辑
+          </button>
+          <button class="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-600 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+            </svg>
+            删除
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

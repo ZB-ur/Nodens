@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PageHeader Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+
+  <!-- Variant 1: Full header with breadcrumbs + actions -->
+  <div class="max-w-4xl mx-auto mb-10">
+    <div class="mb-6">
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="mb-2">
+        <ol class="flex items-center gap-1.5 text-sm text-gray-600">
+          <li class="flex items-center gap-1.5">
+            <a href="#" class="hover:text-blue-600 transition-colors">首页</a>
+          </li>
+          <li class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+            <a href="#" class="hover:text-blue-600 transition-colors">账号管理</a>
+          </li>
+          <li class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+            <span class="text-gray-400">主题配置</span>
+          </li>
+        </ol>
+      </nav>
+
+      <!-- Title + Actions -->
+      <div class="flex items-center justify-between gap-4">
+        <h1 class="text-2xl font-bold text-gray-900 truncate">主题配置</h1>
+        <div class="flex items-center gap-3 flex-shrink-0">
+          <button class="px-4 py-2 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+            重置
+          </button>
+          <button class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors">
+            保存配置
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Variant 2: Simple header with title only -->
+  <div class="max-w-4xl mx-auto mb-10">
+    <div class="mb-6">
+      <div class="flex items-center justify-between gap-4">
+        <h1 class="text-2xl font-bold text-gray-900 truncate">监控面板</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- Variant 3: Breadcrumbs + title, no actions -->
+  <div class="max-w-4xl mx-auto mb-10">
+    <div class="mb-6">
+      <nav aria-label="Breadcrumb" class="mb-2">
+        <ol class="flex items-center gap-1.5 text-sm text-gray-600">
+          <li class="flex items-center gap-1.5">
+            <a href="#" class="hover:text-blue-600 transition-colors">首页</a>
+          </li>
+          <li class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+            <span class="text-gray-400">素材库</span>
+          </li>
+        </ol>
+      </nav>
+      <div class="flex items-center justify-between gap-4">
+        <h1 class="text-2xl font-bold text-gray-900 truncate">素材库</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- Variant 4: With single action button -->
+  <div class="max-w-4xl mx-auto">
+    <div class="mb-6">
+      <nav aria-label="Breadcrumb" class="mb-2">
+        <ol class="flex items-center gap-1.5 text-sm text-gray-600">
+          <li class="flex items-center gap-1.5">
+            <a href="#" class="hover:text-blue-600 transition-colors">首页</a>
+          </li>
+          <li class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+            <span class="text-gray-400">账号管理</span>
+          </li>
+        </ol>
+      </nav>
+      <div class="flex items-center justify-between gap-4">
+        <h1 class="text-2xl font-bold text-gray-900 truncate">账号管理</h1>
+        <div class="flex items-center gap-3 flex-shrink-0">
+          <button class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
+            添加账号
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

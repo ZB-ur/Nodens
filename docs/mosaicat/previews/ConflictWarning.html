@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ConflictWarning Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }</style>
+</head>
+<body>
+  <div class="max-w-2xl mx-auto space-y-6">
+    <!-- Multiple conflicts -->
+    <div class="rounded-xl border border-amber-200 bg-amber-50 p-4">
+      <div class="flex items-start gap-3">
+        <div class="shrink-0 mt-0.5">
+          <svg class="h-5 w-5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" />
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h4 class="text-sm font-semibold text-amber-800">检测到 2 个排期冲突</h4>
+          <ul class="mt-2 space-y-2">
+            <li class="text-sm text-amber-700">
+              <p>
+                <span class="font-medium">美妆日记</span> 的 10:00 与 10:15 间隔仅 <span class="font-medium">15 分钟</span>
+              </p>
+              <p class="text-xs text-amber-600 mt-0.5">建议：将第二条推迟至 10:45，间隔 ≥ 30 分钟</p>
+            </li>
+            <li class="text-sm text-amber-700">
+              <p>
+                <span class="font-medium">穿搭种草</span> 的 14:00 与 14:10 间隔仅 <span class="font-medium">10 分钟</span>
+              </p>
+              <p class="text-xs text-amber-600 mt-0.5">建议：将第二条推迟至 14:40，间隔 ≥ 30 分钟</p>
+            </li>
+          </ul>
+          <button class="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-amber-100 px-3 py-1.5 text-xs font-medium text-amber-800 hover:bg-amber-200 transition-colors">
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            自动调整排期
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Single conflict -->
+    <div class="rounded-xl border border-amber-200 bg-amber-50 p-4">
+      <div class="flex items-start gap-3">
+        <div class="shrink-0 mt-0.5">
+          <svg class="h-5 w-5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" />
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h4 class="text-sm font-semibold text-amber-800">检测到 1 个排期冲突</h4>
+          <ul class="mt-2 space-y-2">
+            <li class="text-sm text-amber-700">
+              <p>
+                <span class="font-medium">生活好物</span> 的 09:00 与 09:20 间隔仅 <span class="font-medium">20 分钟</span>
+              </p>
+              <p class="text-xs text-amber-600 mt-0.5">建议：将第二条推迟至 09:45，间隔 ≥ 30 分钟</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

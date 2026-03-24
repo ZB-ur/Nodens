@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CookieImportModal Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 0; background: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+  </style>
+</head>
+<body>
+  <!-- Backdrop -->
+  <div class="fixed inset-0 z-50 flex items-center justify-center">
+    <div class="absolute inset-0 bg-black/40"></div>
+
+    <!-- Modal -->
+    <div class="relative w-full max-w-lg mx-4 bg-white rounded-xl shadow-xl">
+      <!-- Header -->
+      <div class="flex items-center justify-between px-6 pt-6 pb-2">
+        <div>
+          <h2 class="text-lg font-semibold text-gray-900">导入 Cookie</h2>
+          <p class="text-sm text-gray-600 mt-0.5">添加小红书账号到矩阵</p>
+        </div>
+        <button class="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Body -->
+      <div class="px-6 py-4 space-y-4">
+        <!-- Instructions -->
+        <div class="rounded-lg bg-blue-50 border border-blue-100 p-3">
+          <h4 class="text-sm font-medium text-blue-800 mb-1.5">获取 Cookie 方法</h4>
+          <ol class="text-xs text-blue-700 space-y-1 list-decimal list-inside">
+            <li>在浏览器中登录小红书网页版</li>
+            <li>按 <kbd class="px-1 py-0.5 rounded bg-blue-100 text-blue-800 font-mono text-[11px]">F12</kbd> 打开开发者工具</li>
+            <li>切换到 Application → Cookies 标签</li>
+            <li>复制所有 Cookie 值并粘贴到下方</li>
+          </ol>
+        </div>
+
+        <!-- Cookie Input -->
+        <div>
+          <label class="block text-sm font-medium text-gray-900 mb-1.5">
+            Cookie 字符串 <span class="text-red-500">*</span>
+          </label>
+          <textarea
+            rows="4"
+            placeholder="粘贴完整的 Cookie 字符串…"
+            class="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none font-mono"
+          >a]_1=6766bba4e0209b12007e14f4;abRequestId=94f49de3-b1f2-5a0e-aaee-c89203bc7c6b;webBuild=4.61.0;xsecappid=xhs-pc-web;web_session=040069b374...</textarea>
+        </div>
+
+        <!-- Nickname Input -->
+        <div>
+          <label class="block text-sm font-medium text-gray-900 mb-1.5">
+            账号备注名 <span class="text-gray-400 font-normal">（可选）</span>
+          </label>
+          <input
+            type="text"
+            value="美妆号01"
+            class="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+
+        <!-- Error State -->
+        <div class="flex items-start gap-2 rounded-lg bg-red-50 border border-red-100 p-3">
+          <svg class="w-4 h-4 text-red-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+          </svg>
+          <p class="text-sm text-red-700">Cookie 格式无效，请确认已复制完整的 Cookie 字符串。缺少必要字段：web_session</p>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="flex items-center justify-end gap-3 px-6 pb-6 pt-2">
+        <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+          取消
+        </button>
+        <button class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
+          导入账号
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

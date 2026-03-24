@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ConfirmDialog Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="space-y-10">
+
+    <!-- ========== Variant 1: Danger with Input Confirmation ========== -->
+    <div>
+      <p class="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Danger — 需要输入确认</p>
+      <div class="relative bg-black/50 rounded-xl p-8 flex items-center justify-center" style="min-height: 360px;">
+        <div class="relative bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-red-50 flex items-center justify-center">
+                <svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                </svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h3 class="text-lg font-semibold text-gray-900">删除账号</h3>
+                <p class="mt-2 text-sm text-gray-600 leading-relaxed">此操作将永久删除账号「小红书达人_美妆」及其所有关联数据，包括草稿、排期和发布记录。此操作无法撤销。</p>
+              </div>
+            </div>
+            <div class="mt-4 ml-14">
+              <p class="text-sm text-gray-600 mb-2">
+                请输入 <span class="font-semibold text-gray-900">小红书达人_美妆</span> 以确认操作
+              </p>
+              <input
+                type="text"
+                value="小红书达人_美"
+                class="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none placeholder:text-gray-400"
+                readonly
+              />
+            </div>
+          </div>
+          <div class="flex justify-end gap-3 px-6 py-4 bg-slate-50 border-t border-gray-200">
+            <button class="px-4 py-2 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50">取消</button>
+            <button class="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg opacity-40 cursor-not-allowed">删除</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== Variant 2: Warning ========== -->
+    <div>
+      <p class="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Warning — 常规确认</p>
+      <div class="relative bg-black/50 rounded-xl p-8 flex items-center justify-center" style="min-height: 280px;">
+        <div class="relative bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center">
+                <svg class="w-6 h-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                </svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h3 class="text-lg font-semibold text-gray-900">批量删除图片</h3>
+                <p class="mt-2 text-sm text-gray-600 leading-relaxed">确定要删除选中的 12 张图片吗？已关联到排期的图片将被自动移除。</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-end gap-3 px-6 py-4 bg-slate-50 border-t border-gray-200">
+            <button class="px-4 py-2 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50">取消</button>
+            <button class="px-4 py-2 text-sm font-medium text-white bg-amber-500 hover:bg-amber-600 rounded-lg">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== Variant 3: Default ========== -->
+    <div>
+      <p class="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Default — 信息确认</p>
+      <div class="relative bg-black/50 rounded-xl p-8 flex items-center justify-center" style="min-height: 280px;">
+        <div class="relative bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center">
+                <svg class="w-6 h-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+                </svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h3 class="text-lg font-semibold text-gray-900">确认发布排期</h3>
+                <p class="mt-2 text-sm text-gray-600 leading-relaxed">将为 3 个账号生成 7 天排期，共计 42 条发布计划。确认后排期将自动执行。</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-end gap-3 px-6 py-4 bg-slate-50 border-t border-gray-200">
+            <button class="px-4 py-2 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50">取消</button>
+            <button class="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

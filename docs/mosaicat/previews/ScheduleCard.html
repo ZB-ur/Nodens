@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScheduleCard Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="max-w-xs space-y-4">
+
+    <!-- Pending -->
+    <div class="group relative bg-white rounded-lg border border-gray-200 border-l-[3px] border-l-blue-500 p-2.5 cursor-pointer transition-all duration-150 hover:shadow-md hover:border-gray-300">
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-xs font-medium text-gray-900">10:00</span>
+        <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-blue-50 text-blue-700">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+          待发布
+        </span>
+      </div>
+      <p class="text-sm text-gray-900 font-medium leading-tight truncate mb-1">春日护肤好物分享｜敏感肌必看</p>
+      <div class="flex items-center justify-between text-xs text-gray-500">
+        <span class="truncate max-w-[60%]">@小美的日记</span>
+        <span class="flex items-center gap-0.5 shrink-0">
+          <svg class="w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.41a2.25 2.25 0 013.182 0l2.909 2.91M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
+          </svg>
+          3
+        </span>
+      </div>
+    </div>
+
+    <!-- Publishing (in-progress) -->
+    <div class="group relative bg-white rounded-lg border border-gray-200 border-l-[3px] border-l-amber-500 p-2.5 cursor-pointer transition-all duration-150 hover:shadow-md hover:border-gray-300">
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-xs font-medium text-gray-900">14:30</span>
+        <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-amber-50 text-amber-700">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+          发布中
+        </span>
+      </div>
+      <p class="text-sm text-gray-900 font-medium leading-tight truncate mb-1">周末出游穿搭灵感合集</p>
+      <div class="flex items-center justify-between text-xs text-gray-500">
+        <span class="truncate max-w-[60%]">@时尚穿搭师</span>
+        <span class="flex items-center gap-0.5 shrink-0">
+          <svg class="w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.41a2.25 2.25 0 013.182 0l2.909 2.91M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
+          </svg>
+          5
+        </span>
+      </div>
+    </div>
+
+    <!-- Success -->
+    <div class="group relative bg-white rounded-lg border border-gray-200 border-l-[3px] border-l-emerald-500 p-2.5 cursor-pointer transition-all duration-150 hover:shadow-md hover:border-gray-300">
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-xs font-medium text-gray-900">08:00</span>
+        <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-emerald-50 text-emerald-700">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+          已发布
+        </span>
+      </div>
+      <p class="text-sm text-gray-900 font-medium leading-tight truncate mb-1">早餐食谱｜5分钟搞定元气满满</p>
+      <div class="flex items-center justify-between text-xs text-gray-500">
+        <span class="truncate max-w-[60%]">@美食家小厨</span>
+        <span class="flex items-center gap-0.5 shrink-0">
+          <svg class="w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.41a2.25 2.25 0 013.182 0l2.909 2.91M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
+          </svg>
+          4
+        </span>
+      </div>
+    </div>
+
+    <!-- Failed -->
+    <div class="group relative bg-white rounded-lg border border-gray-200 border-l-[3px] border-l-red-500 p-2.5 cursor-pointer transition-all duration-150 hover:shadow-md hover:border-gray-300">
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-xs font-medium text-gray-900">20:00</span>
+        <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-red-50 text-red-700">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+          失败
+        </span>
+      </div>
+      <p class="text-sm text-gray-900 font-medium leading-tight truncate mb-1">居家好物推荐｜提升幸福感的小物件</p>
+      <div class="flex items-center justify-between text-xs text-gray-500">
+        <span class="truncate max-w-[60%]">@生活小达人</span>
+        <span class="flex items-center gap-0.5 shrink-0">
+          <svg class="w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.41a2.25 2.25 0 013.182 0l2.909 2.91M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
+          </svg>
+          2
+        </span>
+      </div>
+    </div>
+
+    <!-- Cancelled -->
+    <div class="group relative bg-white rounded-lg border border-gray-200 border-l-[3px] border-l-gray-400 p-2.5 cursor-pointer transition-all duration-150 hover:shadow-md hover:border-gray-300">
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-xs font-medium text-gray-900">16:00</span>
+        <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-gray-100 text-gray-500">
+          已取消
+        </span>
+      </div>
+      <p class="text-sm text-gray-900 font-medium leading-tight truncate mb-1">未关联内容</p>
+      <div class="flex items-center justify-between text-xs text-gray-500">
+        <span class="truncate max-w-[60%]">@小美的日记</span>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

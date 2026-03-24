@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InlineEditor Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="max-w-2xl mx-auto space-y-8">
+
+    <!-- State 1: Normal editing (within limits) -->
+    <div>
+      <p class="text-xs text-gray-400 mb-2 uppercase tracking-wide font-medium">Normal — 正常编辑</p>
+      <div class="bg-white border border-gray-200 rounded-xl p-6 space-y-5">
+        <!-- Title -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="text-sm font-semibold text-gray-900">标题</label>
+            <span class="text-xs tabular-nums text-gray-400">12/20</span>
+          </div>
+          <div class="w-full px-4 py-2.5 text-base text-gray-900 border border-blue-600 ring-2 ring-blue-600/20 rounded-lg">
+            秋冬必备的护肤好物推荐
+          </div>
+          <div class="h-1 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full rounded-full bg-blue-600 transition-all" style="width: 60%"></div>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="text-sm font-semibold text-gray-900">正文</label>
+            <span class="text-xs tabular-nums text-gray-400">186/1000</span>
+          </div>
+          <div class="w-full px-4 py-3 text-base text-gray-900 border border-gray-200 rounded-lg min-h-[120px]">
+            姐妹们！今天给大家分享我秋冬换季期间用下来最好用的几款护肤品～<br/><br/>
+            1️⃣ 洁面：氨基酸洗面奶，温和不紧绷<br/>
+            2️⃣ 精华：烟酰胺精华液，提亮肤色效果明显<br/>
+            3️⃣ 面霜：神经酰胺修护霜，屏障修护一绝<br/><br/>
+            每一款都是亲测回购的好物，干皮姐妹冲！
+          </div>
+          <div class="h-1 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full rounded-full bg-blue-600 transition-all" style="width: 18.6%"></div>
+          </div>
+        </div>
+
+        <!-- Hashtags -->
+        <div class="space-y-2">
+          <label class="text-sm font-semibold text-gray-900">话题标签</label>
+          <div class="flex flex-wrap items-center gap-2 px-4 py-2.5 border border-gray-200 rounded-lg min-h-[44px]">
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-blue-50 text-blue-700 text-sm rounded-md">
+              #护肤
+              <button class="text-blue-400 hover:text-blue-700 ml-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-blue-50 text-blue-700 text-sm rounded-md">
+              #秋冬好物
+              <button class="text-blue-400 hover:text-blue-700 ml-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-blue-50 text-blue-700 text-sm rounded-md">
+              #好物分享
+              <button class="text-blue-400 hover:text-blue-700 ml-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </span>
+            <span class="text-sm text-gray-400 py-0.5">继续添加...</span>
+          </div>
+          <p class="text-xs text-gray-400">按 Enter 或逗号添加标签，Backspace 删除最后一个</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- State 2: Warning (approaching limit, 80%+) -->
+    <div>
+      <p class="text-xs text-gray-400 mb-2 uppercase tracking-wide font-medium">Warning — 接近限制</p>
+      <div class="bg-white border border-gray-200 rounded-xl p-6 space-y-5">
+        <!-- Title near limit -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="text-sm font-semibold text-gray-900">标题</label>
+            <span class="text-xs tabular-nums text-amber-500">18/20</span>
+          </div>
+          <div class="w-full px-4 py-2.5 text-base text-gray-900 border border-gray-200 rounded-lg">
+            秋冬换季期间干皮姐妹必看的护肤指南
+          </div>
+          <div class="h-1 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full rounded-full bg-amber-500 transition-all" style="width: 90%"></div>
+          </div>
+        </div>
+
+        <!-- Body near limit -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="text-sm font-semibold text-gray-900">正文</label>
+            <span class="text-xs tabular-nums text-amber-500">856/1000</span>
+          </div>
+          <div class="w-full px-4 py-3 text-base text-gray-900 border border-gray-200 rounded-lg min-h-[120px]">
+            姐妹们！今天给大家分享我秋冬换季期间用下来最好用的几款护肤品～每一款都是反复回购的真爱好物...<br/><br/>
+            （正文内容较长，接近字数上限...）
+          </div>
+          <div class="h-1 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full rounded-full bg-amber-500 transition-all" style="width: 85.6%"></div>
+          </div>
+        </div>
+
+        <!-- Hashtags -->
+        <div class="space-y-2">
+          <label class="text-sm font-semibold text-gray-900">话题标签</label>
+          <div class="flex flex-wrap items-center gap-2 px-4 py-2.5 border border-gray-200 rounded-lg min-h-[44px]">
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-blue-50 text-blue-700 text-sm rounded-md">
+              #护肤
+              <button class="text-blue-400 ml-0.5"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-blue-50 text-blue-700 text-sm rounded-md">
+              #敏感肌
+              <button class="text-blue-400 ml-0.5"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+            </span>
+            <span class="text-sm text-gray-400 py-0.5">继续添加...</span>
+          </div>
+          <p class="text-xs text-gray-400">按 Enter 或逗号添加标签，Backspace 删除最后一个</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- State 3: Over limit (error state) -->
+    <div>
+      <p class="text-xs text-gray-400 mb-2 uppercase tracking-wide font-medium">Error — 超出限制</p>
+      <div class="bg-white border border-gray-200 rounded-xl p-6 space-y-5">
+        <!-- Title over limit -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="text-sm font-semibold text-gray-900">标题</label>
+            <span class="text-xs tabular-nums text-red-500 font-semibold">24/20</span>
+          </div>
+          <div class="w-full px-4 py-2.5 text-base text-gray-900 border border-red-300 rounded-lg ring-2 ring-red-500/20">
+            秋冬换季期间干皮敏感肌姐妹必看的护肤保养完整指南
+          </div>
+          <div class="h-1 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full rounded-full bg-red-500 transition-all" style="width: 100%"></div>
+          </div>
+          <p class="text-xs text-red-500 flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            标题超出限制 4 字，请精简
+          </p>
+        </div>
+
+        <!-- Body over limit -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="text-sm font-semibold text-gray-900">正文</label>
+            <span class="text-xs tabular-nums text-red-500 font-semibold">1087/1000</span>
+          </div>
+          <div class="w-full px-4 py-3 text-base text-gray-900 border border-red-300 rounded-lg ring-2 ring-red-500/20 min-h-[120px]">
+            姐妹们！今天给大家分享我秋冬换季期间用下来最好用的几款护肤品～每一款都是反复回购的真爱好物...<br/><br/>
+            （正文内容已超出字数限制...）
+          </div>
+          <div class="h-1 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full rounded-full bg-red-500 transition-all" style="width: 100%"></div>
+          </div>
+          <p class="text-xs text-red-500 flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            正文超出限制 87 字，请精简
+          </p>
+        </div>
+
+        <!-- Hashtags -->
+        <div class="space-y-2">
+          <label class="text-sm font-semibold text-gray-900">话题标签</label>
+          <div class="flex flex-wrap items-center gap-2 px-4 py-2.5 border border-gray-200 rounded-lg min-h-[44px]">
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-blue-50 text-blue-700 text-sm rounded-md">
+              #护肤
+              <button class="text-blue-400 ml-0.5"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-blue-50 text-blue-700 text-sm rounded-md">
+              #秋冬好物
+              <button class="text-blue-400 ml-0.5"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-blue-50 text-blue-700 text-sm rounded-md">
+              #好物分享
+              <button class="text-blue-400 ml-0.5"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-blue-50 text-blue-700 text-sm rounded-md">
+              #敏感肌
+              <button class="text-blue-400 ml-0.5"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-blue-50 text-blue-700 text-sm rounded-md">
+              #面霜推荐
+              <button class="text-blue-400 ml-0.5"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+            </span>
+            <span class="text-sm text-gray-400 py-0.5">继续添加...</span>
+          </div>
+          <p class="text-xs text-gray-400">按 Enter 或逗号添加标签，Backspace 删除最后一个</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- State 4: Empty / Placeholder -->
+    <div>
+      <p class="text-xs text-gray-400 mb-2 uppercase tracking-wide font-medium">Empty — 空白状态</p>
+      <div class="bg-white border border-gray-200 rounded-xl p-6 space-y-5">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="text-sm font-semibold text-gray-900">标题</label>
+            <span class="text-xs tabular-nums text-gray-400">0/20</span>
+          </div>
+          <div class="w-full px-4 py-2.5 text-base text-gray-400 border border-gray-200 rounded-lg">
+            输入笔记标题...
+          </div>
+          <div class="h-1 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full rounded-full bg-blue-600" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="text-sm font-semibold text-gray-900">正文</label>
+            <span class="text-xs tabular-nums text-gray-400">0/1000</span>
+          </div>
+          <div class="w-full px-4 py-3 text-base text-gray-400 border border-gray-200 rounded-lg min-h-[120px]">
+            输入笔记正文内容...
+          </div>
+          <div class="h-1 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full rounded-full bg-blue-600" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-sm font-semibold text-gray-900">话题标签</label>
+          <div class="flex flex-wrap items-center gap-2 px-4 py-2.5 border border-gray-200 rounded-lg min-h-[44px]">
+            <span class="text-sm text-gray-400 py-0.5">输入标签后按 Enter 添加...</span>
+          </div>
+          <p class="text-xs text-gray-400">按 Enter 或逗号添加标签，Backspace 删除最后一个</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

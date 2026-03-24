@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PublishProgressCard Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    .animate-spin { animation: spin 1s linear infinite; }
+  </style>
+</head>
+<body>
+  <div class="max-w-md mx-auto space-y-6">
+
+    <!-- Card 1: Publishing (active) -->
+    <div class="bg-white border border-amber-300 ring-1 ring-amber-100 rounded-xl p-6 shadow-sm">
+      <!-- Header -->
+      <div class="flex items-start justify-between mb-4">
+        <div class="flex-1 min-w-0">
+          <h3 class="text-base font-semibold text-gray-900 truncate">春季护肤必备好物分享</h3>
+          <p class="text-sm text-gray-500 mt-0.5">
+            <span class="inline-flex items-center gap-1">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              小美的美妆日记
+            </span>
+          </p>
+        </div>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-600">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+          发布中
+        </span>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="mb-4">
+        <div class="flex items-center justify-between text-xs text-gray-500 mb-1.5">
+          <span>发布进度</span>
+          <span>45%</span>
+        </div>
+        <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+          <div class="h-full rounded-full bg-blue-500 animate-pulse" style="width: 45%"></div>
+        </div>
+      </div>
+
+      <!-- Steps -->
+      <div class="mb-4 space-y-2">
+        <!-- Step 1: done -->
+        <div class="flex items-center gap-2 text-sm">
+          <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          <span class="text-gray-500">打开发布页面</span>
+        </div>
+        <!-- Step 2: done -->
+        <div class="flex items-center gap-2 text-sm">
+          <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          <span class="text-gray-500">上传图片素材</span>
+        </div>
+        <!-- Step 3: active -->
+        <div class="flex items-center gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 animate-spin shrink-0" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+          </svg>
+          <span class="text-gray-700">填写标题与正文</span>
+        </div>
+        <!-- Step 4: pending -->
+        <div class="flex items-center gap-2 text-sm">
+          <div class="w-4 h-4 rounded-full border-2 border-gray-200 shrink-0"></div>
+          <span class="text-gray-700">添加话题标签</span>
+        </div>
+        <!-- Step 5: pending -->
+        <div class="flex items-center gap-2 text-sm">
+          <div class="w-4 h-4 rounded-full border-2 border-gray-200 shrink-0"></div>
+          <span class="text-gray-700">确认发布</span>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+        <div class="flex items-center gap-3 text-xs text-gray-400">
+          <span>开始: 10:30</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Success -->
+    <div class="bg-white border border-emerald-200 rounded-xl p-6 shadow-sm">
+      <div class="flex items-start justify-between mb-4">
+        <div class="flex-1 min-w-0">
+          <h3 class="text-base font-semibold text-gray-900 truncate">每日穿搭灵感 OOTD</h3>
+          <p class="text-sm text-gray-500 mt-0.5">
+            <span class="inline-flex items-center gap-1">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              时尚穿搭达人
+            </span>
+          </p>
+        </div>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-600">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          已成功
+        </span>
+      </div>
+
+      <!-- Progress bar full -->
+      <div class="mb-4">
+        <div class="flex items-center justify-between text-xs text-gray-500 mb-1.5">
+          <span>发布进度</span>
+          <span>100%</span>
+        </div>
+        <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+          <div class="h-full rounded-full bg-emerald-500" style="width: 100%"></div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+        <div class="flex items-center gap-3 text-xs text-gray-400">
+          <span>开始: 09:00</span>
+          <span>耗时: 12.3s</span>
+        </div>
+        <span class="text-xs text-emerald-600 font-medium flex items-center gap-1">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          发布完成
+        </span>
+      </div>
+    </div>
+
+    <!-- Card 3: Failed -->
+    <div class="bg-white border border-red-200 rounded-xl p-6 shadow-sm">
+      <div class="flex items-start justify-between mb-4">
+        <div class="flex-1 min-w-0">
+          <h3 class="text-base font-semibold text-gray-900 truncate">减脂餐食谱大公开</h3>
+          <p class="text-sm text-gray-500 mt-0.5">
+            <span class="inline-flex items-center gap-1">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              健康生活家
+            </span>
+          </p>
+        </div>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-red-50 text-red-600">
+          <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+          失败
+        </span>
+      </div>
+
+      <!-- Error block -->
+      <div class="mb-4 bg-red-50 border border-red-100 rounded-lg p-3">
+        <div class="flex items-start gap-2">
+          <svg class="w-4 h-4 text-red-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+          </svg>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium text-red-700">Cookie 已过期</p>
+            <p class="text-xs text-red-600 mt-0.5">账号登录状态已失效，请重新导入 Cookie 或扫码登录</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+        <div class="flex items-center gap-3 text-xs text-gray-400">
+          <span>开始: 20:00</span>
+          <span>耗时: 3.2s</span>
+          <span>重试: 2次</span>
+        </div>
+        <button class="text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors">
+          重试发布
+        </button>
+      </div>
+    </div>
+
+    <!-- Card 4: Queued -->
+    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+      <div class="flex items-start justify-between mb-4">
+        <div class="flex-1 min-w-0">
+          <h3 class="text-base font-semibold text-gray-900 truncate">周末好去处推荐</h3>
+          <p class="text-sm text-gray-500 mt-0.5">
+            <span class="inline-flex items-center gap-1">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              探店小能手
+            </span>
+          </p>
+        </div>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
+          <span class="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
+          排队中
+        </span>
+      </div>
+
+      <!-- Footer -->
+      <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+        <div class="flex items-center gap-3 text-xs text-gray-400">
+          <span>等待前序任务完成</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

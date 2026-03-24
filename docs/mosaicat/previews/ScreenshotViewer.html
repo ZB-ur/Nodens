@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScreenshotViewer Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+
+  <div class="max-w-4xl mx-auto space-y-10">
+
+    <!-- State 1: Normal thumbnail -->
+    <div>
+      <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Normal State</h3>
+      <div class="space-y-2">
+        <div class="flex items-center gap-1.5 text-sm font-medium text-gray-600">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          失败截图
+        </div>
+        <div class="group relative block w-full max-w-sm overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm cursor-pointer">
+          <!-- Mock screenshot content -->
+          <div class="relative h-56 bg-gradient-to-br from-slate-100 to-slate-200 p-4">
+            <!-- Simulated browser chrome -->
+            <div class="rounded-lg border border-gray-300 bg-white shadow-sm overflow-hidden h-full">
+              <div class="flex items-center gap-1.5 bg-gray-100 px-3 py-1.5 border-b border-gray-200">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+                <div class="ml-2 flex-1 rounded bg-gray-200 px-2 py-0.5 text-xs text-gray-500">creator.xiaohongshu.com/publish</div>
+              </div>
+              <div class="p-3 space-y-2">
+                <div class="h-3 w-3/4 rounded bg-gray-200"></div>
+                <div class="h-3 w-1/2 rounded bg-gray-200"></div>
+                <div class="mt-3 flex items-center gap-2">
+                  <div class="rounded border border-red-300 bg-red-50 px-2 py-1">
+                    <span class="text-xs text-red-500 font-medium">选择器未找到: #publish-btn</span>
+                  </div>
+                </div>
+                <div class="h-3 w-2/3 rounded bg-gray-100"></div>
+                <div class="h-3 w-1/3 rounded bg-gray-100"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Hover overlay hint -->
+          <div class="absolute inset-0 flex items-center justify-center bg-black/20">
+            <span class="rounded-lg bg-black/60 px-3 py-1.5 text-sm font-medium text-white">
+              点击放大查看
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- State 2: Error / broken image -->
+    <div>
+      <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Error State</h3>
+      <div class="space-y-2">
+        <div class="flex items-center gap-1.5 text-sm font-medium text-gray-600">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          失败截图
+        </div>
+        <div class="relative block w-full max-w-sm overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm opacity-60 cursor-not-allowed">
+          <div class="flex h-48 flex-col items-center justify-center gap-2 bg-slate-50 text-gray-400">
+            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.41a2.25 2.25 0 013.182 0l2.909 2.91m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+            </svg>
+            <span class="text-sm">截图加载失败</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- State 3: Zoomed / Lightbox -->
+    <div>
+      <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Lightbox State (simulated)</h3>
+      <div class="relative rounded-xl overflow-hidden border border-gray-200 shadow-sm" style="height: 400px;">
+        <!-- Simulated lightbox background -->
+        <div class="absolute inset-0 bg-black/80 flex items-center justify-center p-6">
+          <!-- Close button -->
+          <button class="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          <!-- Full-size simulated screenshot -->
+          <div class="max-w-lg w-full rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 p-4 shadow-2xl">
+            <div class="rounded-lg border border-gray-300 bg-white shadow-sm overflow-hidden">
+              <div class="flex items-center gap-1.5 bg-gray-100 px-3 py-2 border-b border-gray-200">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+                <div class="ml-2 flex-1 rounded bg-gray-200 px-2 py-0.5 text-xs text-gray-500">creator.xiaohongshu.com/publish</div>
+              </div>
+              <div class="p-4 space-y-3">
+                <div class="h-3 w-3/4 rounded bg-gray-200"></div>
+                <div class="h-3 w-1/2 rounded bg-gray-200"></div>
+                <div class="flex items-center gap-2 mt-2">
+                  <div class="rounded border border-red-300 bg-red-50 px-2 py-1">
+                    <span class="text-xs text-red-500 font-medium">Error: selector_not_found</span>
+                  </div>
+                </div>
+                <div class="rounded border border-red-200 bg-red-50/50 p-2 text-xs text-red-600 font-mono">
+                  TimeoutError: Waiting for selector "#publish-btn" failed: timeout 30000ms exceeded
+                </div>
+                <div class="h-3 w-2/3 rounded bg-gray-100"></div>
+                <div class="h-3 w-1/4 rounded bg-gray-100"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hint text -->
+          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-lg bg-black/50 px-4 py-2 text-sm text-white/80">
+            按 ESC 或点击背景关闭
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

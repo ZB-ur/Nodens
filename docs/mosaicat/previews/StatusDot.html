@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StatusDot Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="space-y-6 max-w-md mx-auto">
+    <h2 class="text-lg font-semibold text-gray-900">StatusDot</h2>
+
+    <!-- Statuses -->
+    <div class="space-y-3">
+      <p class="text-sm font-medium text-gray-600">Status Variants</p>
+      <div class="flex items-center gap-6">
+        <div class="flex items-center gap-2">
+          <span class="relative inline-flex">
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+          </span>
+          <span class="text-sm text-gray-600">Online</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="relative inline-flex">
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
+          </span>
+          <span class="text-sm text-gray-600">Warning</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="relative inline-flex">
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+          </span>
+          <span class="text-sm text-gray-600">Offline</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="relative inline-flex">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 bg-blue-400"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
+          </span>
+          <span class="text-sm text-gray-600">Active (pulse)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="space-y-3">
+      <p class="text-sm font-medium text-gray-600">Sizes</p>
+      <div class="flex items-center gap-6">
+        <div class="flex items-center gap-2">
+          <span class="relative inline-flex">
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span class="text-sm text-gray-600">Small</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="relative inline-flex">
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+          </span>
+          <span class="text-sm text-gray-600">Medium</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="relative inline-flex">
+            <span class="relative inline-flex rounded-full h-4 w-4 bg-emerald-500"></span>
+          </span>
+          <span class="text-sm text-gray-600">Large</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pulse variants -->
+    <div class="space-y-3">
+      <p class="text-sm font-medium text-gray-600">With Pulse</p>
+      <div class="flex items-center gap-6">
+        <div class="flex items-center gap-2">
+          <span class="relative inline-flex">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 bg-emerald-400"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+          </span>
+          <span class="text-sm text-gray-600">Online</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="relative inline-flex">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 bg-amber-400"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
+          </span>
+          <span class="text-sm text-gray-600">Warning</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="relative inline-flex">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 bg-red-400"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+          </span>
+          <span class="text-sm text-gray-600">Offline</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

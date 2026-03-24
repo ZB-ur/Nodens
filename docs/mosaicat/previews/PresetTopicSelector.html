@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PresetTopicSelector Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; padding: 16px; background: #f8fafc; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="max-w-md mx-auto space-y-3">
+    <!-- Header -->
+    <div class="flex items-center justify-between">
+      <h3 class="text-sm font-semibold text-gray-900">预设主题</h3>
+      <span class="text-xs text-gray-400">已选 3 项</span>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-4 gap-3">
+
+      <!-- Selected: 美妆 -->
+      <button class="relative flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-blue-600 bg-blue-50 text-blue-700 p-4 transition-all duration-150">
+        <span class="absolute top-1.5 right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-white">
+          <svg class="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+          </svg>
+        </span>
+        <span class="text-2xl leading-none">💄</span>
+        <span class="text-xs font-medium leading-none">美妆</span>
+      </button>
+
+      <!-- Selected: 穿搭 -->
+      <button class="relative flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-blue-600 bg-blue-50 text-blue-700 p-4 transition-all duration-150">
+        <span class="absolute top-1.5 right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-white">
+          <svg class="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+          </svg>
+        </span>
+        <span class="text-2xl leading-none">👗</span>
+        <span class="text-xs font-medium leading-none">穿搭</span>
+      </button>
+
+      <!-- Unselected: 美食 -->
+      <button class="relative flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-gray-200 bg-white text-gray-600 p-4 transition-all duration-150">
+        <span class="text-2xl leading-none">🍜</span>
+        <span class="text-xs font-medium leading-none">美食</span>
+      </button>
+
+      <!-- Selected: 旅行 -->
+      <button class="relative flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-blue-600 bg-blue-50 text-blue-700 p-4 transition-all duration-150">
+        <span class="absolute top-1.5 right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-white">
+          <svg class="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+          </svg>
+        </span>
+        <span class="text-2xl leading-none">✈️</span>
+        <span class="text-xs font-medium leading-none">旅行</span>
+      </button>
+
+      <!-- Unselected: 健身 -->
+      <button class="relative flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-gray-200 bg-white text-gray-600 p-4 transition-all duration-150">
+        <span class="text-2xl leading-none">💪</span>
+        <span class="text-xs font-medium leading-none">健身</span>
+      </button>
+
+      <!-- Unselected: 家居 -->
+      <button class="relative flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-gray-200 bg-white text-gray-600 p-4 transition-all duration-150">
+        <span class="text-2xl leading-none">🏠</span>
+        <span class="text-xs font-medium leading-none">家居</span>
+      </button>
+
+      <!-- Unselected: 母婴 -->
+      <button class="relative flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-gray-200 bg-white text-gray-600 p-4 transition-all duration-150">
+        <span class="text-2xl leading-none">👶</span>
+        <span class="text-xs font-medium leading-none">母婴</span>
+      </button>
+
+      <!-- Unselected: 数码 -->
+      <button class="relative flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-gray-200 bg-white text-gray-600 p-4 transition-all duration-150">
+        <span class="text-2xl leading-none">📱</span>
+        <span class="text-xs font-medium leading-none">数码</span>
+      </button>
+
+    </div>
+  </div>
+</body>
+</html>
