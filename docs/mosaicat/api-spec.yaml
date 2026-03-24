@@ -1,0 +1,2013 @@
+openapi: "3.0.3"
+info:
+  title: Mosaicat Social Media Automation API
+  description: |
+    跨平台自媒体矩阵运营工具 API — MVP 阶段仅支持小红书图文笔记。
+    通过 LLM 自动生成文案 + Playwright 浏览器自动化实现多账号定时批量发布。
+  version: "1.0.0"
+  contact:
+    name: Mosaicat Team
+
+servers:
+  - url: http://localhost:3000/api/v1
+    description: Local development server
+
+tags:
+  - name: Accounts
+    description: 矩阵账号管理 (F-001)
+  - name: Topics
+    description: 主题方向配置 (F-002)
+  - name: Content
+    description: LLM 文案生成与草稿管理 (F-003)
+  - name: Images
+    description: 图片素材库管理 (F-004)
+  - name: Schedules
+    description: 批量排期系统 (F-005)
+  - name: Publishing
+    description: 自动化发布与监控 (F-006, F-007)
+  - name: Settings
+    description: 安全策略与选择器配置 (F-008, F-009)
+  - name: Dashboard
+    description: 监控 Dashboard (F-007)
+
+paths:
+  # ─── Accounts (F-001) ───────────────────────────────────────
+  /accounts:
+    get:
+      tags: [Accounts]
+      summary: 获取所有账号列表
+      operationId: listAccounts
+      responses:
+        "200":
+          description: 账号列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Account"
+                  total:
+                    type: integer
+    post:
+      tags: [Accounts]
+      summary: 添加新账号（通过 Cookie 导入）
+      operationId: createAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateAccountRequest"
+      responses:
+        "201":
+          description: 账号创建成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "409":
+          description: 账号数已达上限(5个)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /accounts/{accountId}:
+    parameters:
+      - $ref: "#/components/parameters/AccountId"
+    get:
+      tags: [Accounts]
+      summary: 获取账号详情
+      operationId: getAccount
+      responses:
+        "200":
+          description: 账号详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      tags: [Accounts]
+      summary: 更新账号信息
+      operationId: updateAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateAccountRequest"
+      responses:
+        "200":
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    delete:
+      tags: [Accounts]
+      summary: 删除账号
+      operationId: deleteAccount
+      responses:
+        "204":
+          description: 删除成功
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /accounts/{accountId}/cookie:
+    parameters:
+      - $ref: "#/components/parameters/AccountId"
+    put:
+      tags: [Accounts]
+      summary: 更新账号 Cookie（重新导入）
+      operationId: updateAccountCookie
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [cookie]
+              properties:
+                cookie:
+                  type: string
+                  description: 小红书 Cookie 字符串
+      responses:
+        "200":
+          description: Cookie 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CookieStatus"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+
+  /accounts/{accountId}/cookie/validate:
+    parameters:
+      - $ref: "#/components/parameters/AccountId"
+    post:
+      tags: [Accounts]
+      summary: 手动触发 Cookie 有效性检测
+      operationId: validateAccountCookie
+      responses:
+        "200":
+          description: Cookie 检测结果
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CookieStatus"
+
+  /accounts/qr-login/initiate:
+    post:
+      tags: [Accounts]
+      summary: 发起扫码登录（获取二维码）
+      operationId: initiateQRLogin
+      responses:
+        "200":
+          description: 二维码信息
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QRLoginSession"
+
+  /accounts/qr-login/{sessionId}/status:
+    parameters:
+      - name: sessionId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: 扫码登录会话 ID
+    get:
+      tags: [Accounts]
+      summary: 轮询扫码登录状态
+      operationId: getQRLoginStatus
+      responses:
+        "200":
+          description: 扫码状态
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QRLoginStatus"
+
+  # ─── Topics (F-002) ─────────────────────────────────────────
+  /accounts/{accountId}/topic-config:
+    parameters:
+      - $ref: "#/components/parameters/AccountId"
+    get:
+      tags: [Topics]
+      summary: 获取账号主题配置
+      operationId: getTopicConfig
+      responses:
+        "200":
+          description: 主题配置
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TopicConfig"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    put:
+      tags: [Topics]
+      summary: 保存/更新账号主题配置
+      operationId: updateTopicConfig
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TopicConfigInput"
+      responses:
+        "200":
+          description: 配置保存成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TopicConfig"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+
+  /topics/presets:
+    get:
+      tags: [Topics]
+      summary: 获取预设主题标签列表
+      operationId: listPresetTopics
+      responses:
+        "200":
+          description: 预设主题列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/PresetTopic"
+
+  # ─── Content Generation (F-003) ─────────────────────────────
+  /content/generate:
+    post:
+      tags: [Content]
+      summary: 调用 LLM 生成文案
+      operationId: generateContent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenerateContentRequest"
+      responses:
+        "200":
+          description: 生成的文案内容
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneratedContent"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "503":
+          description: LLM 服务不可用
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /content/drafts:
+    get:
+      tags: [Content]
+      summary: 获取草稿列表
+      operationId: listDrafts
+      parameters:
+        - name: accountId
+          in: query
+          schema:
+            type: string
+          description: 按账号筛选
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [draft, scheduled, published]
+          description: 按状态筛选
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/PageSize"
+      responses:
+        "200":
+          description: 草稿列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Draft"
+                  total:
+                    type: integer
+                  page:
+                    type: integer
+                  pageSize:
+                    type: integer
+    post:
+      tags: [Content]
+      summary: 保存为草稿
+      operationId: createDraft
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateDraftRequest"
+      responses:
+        "201":
+          description: 草稿保存成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Draft"
+
+  /content/drafts/{draftId}:
+    parameters:
+      - $ref: "#/components/parameters/DraftId"
+    get:
+      tags: [Content]
+      summary: 获取草稿详情
+      operationId: getDraft
+      responses:
+        "200":
+          description: 草稿详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Draft"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    put:
+      tags: [Content]
+      summary: 更新草稿内容（编辑后保存）
+      operationId: updateDraft
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateDraftRequest"
+      responses:
+        "200":
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Draft"
+    delete:
+      tags: [Content]
+      summary: 删除草稿
+      operationId: deleteDraft
+      responses:
+        "204":
+          description: 删除成功
+
+  /content/prompt-templates:
+    get:
+      tags: [Content]
+      summary: 获取 Prompt 模板列表
+      operationId: listPromptTemplates
+      responses:
+        "200":
+          description: 模板列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/PromptTemplate"
+    post:
+      tags: [Content]
+      summary: 创建自定义 Prompt 模板
+      operationId: createPromptTemplate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PromptTemplateInput"
+      responses:
+        "201":
+          description: 模板创建成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PromptTemplate"
+
+  /content/prompt-templates/{templateId}:
+    parameters:
+      - name: templateId
+        in: path
+        required: true
+        schema:
+          type: string
+    put:
+      tags: [Content]
+      summary: 更新自定义 Prompt 模板
+      operationId: updatePromptTemplate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PromptTemplateInput"
+      responses:
+        "200":
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PromptTemplate"
+    delete:
+      tags: [Content]
+      summary: 删除自定义 Prompt 模板
+      operationId: deletePromptTemplate
+      responses:
+        "204":
+          description: 删除成功
+
+  # ─── Images (F-004) ─────────────────────────────────────────
+  /images:
+    get:
+      tags: [Images]
+      summary: 获取素材库图片列表
+      operationId: listImages
+      parameters:
+        - name: accountId
+          in: query
+          schema:
+            type: string
+          description: 按账号筛选
+        - name: category
+          in: query
+          schema:
+            type: string
+          description: 按主题分类筛选
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/PageSize"
+      responses:
+        "200":
+          description: 图片列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Image"
+                  total:
+                    type: integer
+                  page:
+                    type: integer
+                  pageSize:
+                    type: integer
+    post:
+      tags: [Images]
+      summary: 上传图片到素材库
+      operationId: uploadImage
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: "图片文件 (JPG/PNG/WEBP, ≤10MB)"
+                accountId:
+                  type: string
+                  description: 关联账号 ID
+                category:
+                  type: string
+                  description: 分类标签
+      responses:
+        "201":
+          description: 上传成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Image"
+        "400":
+          description: 文件格式/大小不符
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "413":
+          description: 文件超过 10MB
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /images/batch:
+    post:
+      tags: [Images]
+      summary: 批量上传图片
+      operationId: uploadImagesBatch
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [files]
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  description: "多张图片 (JPG/PNG/WEBP, 每张≤10MB)"
+                accountId:
+                  type: string
+                category:
+                  type: string
+      responses:
+        "201":
+          description: 批量上传结果
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Image"
+                  failed:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        filename:
+                          type: string
+                        error:
+                          type: string
+
+  /images/{imageId}:
+    parameters:
+      - name: imageId
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Images]
+      summary: 获取图片详情
+      operationId: getImage
+      responses:
+        "200":
+          description: 图片详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Image"
+    patch:
+      tags: [Images]
+      summary: 更新图片元数据（分类标签等）
+      operationId: updateImage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category:
+                  type: string
+                accountId:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "200":
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Image"
+    delete:
+      tags: [Images]
+      summary: 删除图片
+      operationId: deleteImage
+      responses:
+        "204":
+          description: 删除成功
+
+  /images/categories:
+    get:
+      tags: [Images]
+      summary: 获取素材分类列表
+      operationId: listImageCategories
+      responses:
+        "200":
+          description: 分类列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        count:
+                          type: integer
+
+  # ─── Schedules (F-005) ──────────────────────────────────────
+  /schedules:
+    get:
+      tags: [Schedules]
+      summary: 获取排期列表（日历数据）
+      operationId: listSchedules
+      parameters:
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: 查询起始日期
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: 查询结束日期
+        - name: accountId
+          in: query
+          schema:
+            type: string
+          description: 按账号筛选
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, publishing, success, failed, cancelled]
+          description: 按状态筛选
+      responses:
+        "200":
+          description: 排期列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Schedule"
+                  total:
+                    type: integer
+
+  /schedules/generate:
+    post:
+      tags: [Schedules]
+      summary: 自动生成排期（根据规则批量创建）
+      operationId: generateSchedules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenerateScheduleRequest"
+      responses:
+        "200":
+          description: 生成的排期预览（尚未确认）
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Schedule"
+                  conflicts:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ScheduleConflict"
+
+  /schedules/confirm:
+    post:
+      tags: [Schedules]
+      summary: 确认排期（批量保存预览的排期）
+      operationId: confirmSchedules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [schedules]
+              properties:
+                schedules:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/ScheduleInput"
+      responses:
+        "201":
+          description: 排期确认成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Schedule"
+
+  /schedules/{scheduleId}:
+    parameters:
+      - $ref: "#/components/parameters/ScheduleId"
+    get:
+      tags: [Schedules]
+      summary: 获取排期详情
+      operationId: getSchedule
+      responses:
+        "200":
+          description: 排期详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Schedule"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      tags: [Schedules]
+      summary: 更新排期（调整时间/关联内容/配图）
+      operationId: updateSchedule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateScheduleRequest"
+      responses:
+        "200":
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Schedule"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+    delete:
+      tags: [Schedules]
+      summary: 取消/删除排期
+      operationId: deleteSchedule
+      responses:
+        "204":
+          description: 删除成功
+
+  /schedules/recommended-slots:
+    get:
+      tags: [Schedules]
+      summary: 获取推荐发布时段
+      operationId: getRecommendedTimeSlots
+      responses:
+        "200":
+          description: 推荐时段列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        time:
+                          type: string
+                          example: "10:00"
+                        label:
+                          type: string
+                          example: "早间流量高峰"
+                        priority:
+                          type: string
+                          enum: [high, medium, low]
+
+  # ─── Publishing (F-006, F-007) ──────────────────────────────
+  /publish/{scheduleId}/execute:
+    parameters:
+      - $ref: "#/components/parameters/ScheduleId"
+    post:
+      tags: [Publishing]
+      summary: 手动触发发布（立即执行排期任务）
+      operationId: executePublish
+      responses:
+        "202":
+          description: 发布任务已接受，异步执行中
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublishTask"
+        "400":
+          description: 无法执行（如 Cookie 失效、内容不完整）
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /publish/{scheduleId}/retry:
+    parameters:
+      - $ref: "#/components/parameters/ScheduleId"
+    post:
+      tags: [Publishing]
+      summary: 重试失败的发布任务
+      operationId: retryPublish
+      responses:
+        "202":
+          description: 重试任务已接受
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublishTask"
+
+  /publish/logs:
+    get:
+      tags: [Publishing]
+      summary: 获取发布记录列表
+      operationId: listPublishLogs
+      parameters:
+        - name: accountId
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, publishing, success, failed]
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/PageSize"
+      responses:
+        "200":
+          description: 发布记录列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/PublishLog"
+                  total:
+                    type: integer
+                  page:
+                    type: integer
+                  pageSize:
+                    type: integer
+
+  /publish/logs/{logId}:
+    parameters:
+      - name: logId
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Publishing]
+      summary: 获取发布记录详情（含失败截图）
+      operationId: getPublishLog
+      responses:
+        "200":
+          description: 发布记录详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublishLog"
+
+  /publish/screenshots/{filename}:
+    parameters:
+      - name: filename
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Publishing]
+      summary: 获取发布失败截图
+      operationId: getPublishScreenshot
+      responses:
+        "200":
+          description: 截图图片
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+
+  # ─── Dashboard (F-007) ──────────────────────────────────────
+  /dashboard/overview:
+    get:
+      tags: [Dashboard]
+      summary: 获取 Dashboard 概览数据
+      operationId: getDashboardOverview
+      responses:
+        "200":
+          description: 概览统计
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardOverview"
+
+  /dashboard/stats:
+    get:
+      tags: [Dashboard]
+      summary: 获取发布统计数据
+      operationId: getDashboardStats
+      parameters:
+        - name: period
+          in: query
+          schema:
+            type: string
+            enum: [today, week, month]
+            default: today
+        - name: accountId
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 统计数据
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublishStats"
+
+  /dashboard/alerts:
+    get:
+      tags: [Dashboard]
+      summary: 获取当前告警列表（Cookie 失效等）
+      operationId: listAlerts
+      responses:
+        "200":
+          description: 告警列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Alert"
+
+  /dashboard/alerts/{alertId}/dismiss:
+    parameters:
+      - name: alertId
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      tags: [Dashboard]
+      summary: 关闭/忽略告警
+      operationId: dismissAlert
+      responses:
+        "204":
+          description: 告警已关闭
+
+  # ─── Settings (F-008, F-009) ────────────────────────────────
+  /settings/safety:
+    get:
+      tags: [Settings]
+      summary: 获取全局安全策略配置
+      operationId: getSafetyConfig
+      responses:
+        "200":
+          description: 安全策略配置
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SafetyConfig"
+    put:
+      tags: [Settings]
+      summary: 更新全局安全策略配置
+      operationId: updateSafetyConfig
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SafetyConfigInput"
+      responses:
+        "200":
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SafetyConfig"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+
+  /settings/safety/accounts/{accountId}:
+    parameters:
+      - $ref: "#/components/parameters/AccountId"
+    get:
+      tags: [Settings]
+      summary: 获取账号级安全策略覆盖配置
+      operationId: getAccountSafetyConfig
+      responses:
+        "200":
+          description: 账号级安全策略
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SafetyConfig"
+    put:
+      tags: [Settings]
+      summary: 设置账号级安全策略覆盖
+      operationId: updateAccountSafetyConfig
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SafetyConfigInput"
+      responses:
+        "200":
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SafetyConfig"
+    delete:
+      tags: [Settings]
+      summary: 删除账号级覆盖（回退到全局配置）
+      operationId: deleteAccountSafetyConfig
+      responses:
+        "204":
+          description: 已回退到全局配置
+
+  /settings/selectors:
+    get:
+      tags: [Settings]
+      summary: 获取当前选择器配置
+      operationId: getSelectorConfig
+      responses:
+        "200":
+          description: 选择器配置
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SelectorConfig"
+    put:
+      tags: [Settings]
+      summary: 更新选择器配置
+      operationId: updateSelectorConfig
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SelectorConfigInput"
+      responses:
+        "200":
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SelectorConfig"
+        "400":
+          description: JSON 语法校验失败
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /settings/selectors/versions:
+    get:
+      tags: [Settings]
+      summary: 获取选择器版本历史
+      operationId: listSelectorVersions
+      responses:
+        "200":
+          description: 版本历史列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/SelectorVersion"
+
+  /settings/selectors/versions/{versionId}/rollback:
+    parameters:
+      - name: versionId
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      tags: [Settings]
+      summary: 回滚到指定选择器版本
+      operationId: rollbackSelectorVersion
+      responses:
+        "200":
+          description: 回滚成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SelectorConfig"
+
+  # ─── SSE Event Stream ──────────────────────────────────────
+  /events:
+    get:
+      tags: [Dashboard]
+      summary: SSE 实时事件流（发布状态变化、Cookie告警等）
+      operationId: subscribeEvents
+      parameters:
+        - name: topics
+          in: query
+          schema:
+            type: string
+          description: "逗号分隔的订阅主题: publish-status,cookie-alert,schedule-update"
+      responses:
+        "200":
+          description: SSE 事件流
+          content:
+            text/event-stream:
+              schema:
+                type: string
+                description: |
+                  Server-Sent Events stream. Event types:
+                  - publish-status: 发布状态变化 {scheduleId, status, accountId}
+                  - cookie-alert: Cookie 状态告警 {accountId, status, message}
+                  - schedule-update: 排期变更通知 {scheduleId, action}
+
+components:
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: 账号 ID
+    DraftId:
+      name: draftId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: 草稿 ID
+    ScheduleId:
+      name: scheduleId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: 排期 ID
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: 页码
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+      description: 每页条数
+
+  schemas:
+    # ─── Account Models ───────────────────────────────────────
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+        platform:
+          type: string
+          enum: [xiaohongshu]
+          description: 平台标识（MVP 仅小红书）
+        nickname:
+          type: string
+          description: 账号昵称
+        avatar:
+          type: string
+          format: uri
+          description: 头像 URL
+        cookieStatus:
+          type: string
+          enum: [valid, expiring, expired, unknown]
+          description: Cookie 状态
+        lastCookieCheck:
+          type: string
+          format: date-time
+        topicConfigured:
+          type: boolean
+          description: 是否已配置主题
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    CreateAccountRequest:
+      type: object
+      required: [platform, cookie]
+      properties:
+        platform:
+          type: string
+          enum: [xiaohongshu]
+        cookie:
+          type: string
+          description: 小红书 Cookie 字符串
+        nickname:
+          type: string
+          description: 自定义备注名（可选，默认从平台抓取）
+
+    UpdateAccountRequest:
+      type: object
+      properties:
+        nickname:
+          type: string
+
+    CookieStatus:
+      type: object
+      properties:
+        accountId:
+          type: string
+        status:
+          type: string
+          enum: [valid, expiring, expired]
+        checkedAt:
+          type: string
+          format: date-time
+        message:
+          type: string
+
+    QRLoginSession:
+      type: object
+      properties:
+        sessionId:
+          type: string
+        qrCodeUrl:
+          type: string
+          format: uri
+          description: 二维码图片 URL
+        expiresAt:
+          type: string
+          format: date-time
+          description: 二维码过期时间（2分钟）
+
+    QRLoginStatus:
+      type: object
+      properties:
+        sessionId:
+          type: string
+        status:
+          type: string
+          enum: [waiting, scanned, confirmed, expired, failed]
+        account:
+          $ref: "#/components/schemas/Account"
+          description: 登录成功时返回创建的账号
+
+    # ─── Topic Models ─────────────────────────────────────────
+    TopicConfig:
+      type: object
+      properties:
+        accountId:
+          type: string
+        topics:
+          type: array
+          items:
+            type: string
+          description: 主题标签列表
+        keywords:
+          type: array
+          items:
+            type: string
+          description: 自定义关键词
+        styleDescription:
+          type: string
+          description: 风格描述文本
+        updatedAt:
+          type: string
+          format: date-time
+
+    TopicConfigInput:
+      type: object
+      properties:
+        topics:
+          type: array
+          items:
+            type: string
+        keywords:
+          type: array
+          items:
+            type: string
+        styleDescription:
+          type: string
+          maxLength: 500
+
+    PresetTopic:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          example: 美妆
+        icon:
+          type: string
+        suggestedKeywords:
+          type: array
+          items:
+            type: string
+
+    # ─── Content Models ───────────────────────────────────────
+    GenerateContentRequest:
+      type: object
+      required: [accountId]
+      properties:
+        accountId:
+          type: string
+          description: 目标账号 ID（自动填充主题配置）
+        topicOverride:
+          type: array
+          items:
+            type: string
+          description: 临时覆盖的主题（可选）
+        keywordsOverride:
+          type: array
+          items:
+            type: string
+          description: 临时覆盖的关键词（可选）
+        styleOverride:
+          type: string
+          description: 临时覆盖的风格描述（可选）
+        templateId:
+          type: string
+          description: Prompt 模板 ID（可选，默认使用内置模板）
+
+    GeneratedContent:
+      type: object
+      properties:
+        title:
+          type: string
+          description: 生成的标题（≤20字）
+        body:
+          type: string
+          description: 生成的正文（≤1000字）
+        hashtags:
+          type: array
+          items:
+            type: string
+          description: 推荐话题标签
+        metadata:
+          type: object
+          properties:
+            model:
+              type: string
+            promptTokens:
+              type: integer
+            completionTokens:
+              type: integer
+            generatedAt:
+              type: string
+              format: date-time
+
+    Draft:
+      type: object
+      properties:
+        id:
+          type: string
+        accountId:
+          type: string
+        title:
+          type: string
+        body:
+          type: string
+        hashtags:
+          type: array
+          items:
+            type: string
+        imageIds:
+          type: array
+          items:
+            type: string
+          description: 关联的图片 ID 列表（有序）
+        status:
+          type: string
+          enum: [draft, scheduled, published]
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    CreateDraftRequest:
+      type: object
+      required: [accountId, title, body]
+      properties:
+        accountId:
+          type: string
+        title:
+          type: string
+          maxLength: 20
+        body:
+          type: string
+          maxLength: 1000
+        hashtags:
+          type: array
+          items:
+            type: string
+        imageIds:
+          type: array
+          items:
+            type: string
+
+    UpdateDraftRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          maxLength: 20
+        body:
+          type: string
+          maxLength: 1000
+        hashtags:
+          type: array
+          items:
+            type: string
+        imageIds:
+          type: array
+          items:
+            type: string
+
+    PromptTemplate:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        template:
+          type: string
+          description: Prompt 模板内容（支持变量占位符）
+        isBuiltin:
+          type: boolean
+          description: 是否为内置模板
+        createdAt:
+          type: string
+          format: date-time
+
+    PromptTemplateInput:
+      type: object
+      required: [name, template]
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        template:
+          type: string
+
+    # ─── Image Models ─────────────────────────────────────────
+    Image:
+      type: object
+      properties:
+        id:
+          type: string
+        filename:
+          type: string
+        url:
+          type: string
+          format: uri
+        thumbnailUrl:
+          type: string
+          format: uri
+        mimeType:
+          type: string
+          enum: [image/jpeg, image/png, image/webp]
+        size:
+          type: integer
+          description: 文件大小（字节）
+        width:
+          type: integer
+        height:
+          type: integer
+        accountId:
+          type: string
+          nullable: true
+        category:
+          type: string
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+
+    # ─── Schedule Models ──────────────────────────────────────
+    Schedule:
+      type: object
+      properties:
+        id:
+          type: string
+        accountId:
+          type: string
+        accountNickname:
+          type: string
+        draftId:
+          type: string
+          nullable: true
+          description: 关联的草稿 ID
+        scheduledAt:
+          type: string
+          format: date-time
+          description: 计划发布时间
+        status:
+          type: string
+          enum: [pending, publishing, success, failed, cancelled]
+        imageIds:
+          type: array
+          items:
+            type: string
+          description: 配图 ID 列表（有序）
+        publishLogId:
+          type: string
+          nullable: true
+          description: 关联的发布日志 ID
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    ScheduleInput:
+      type: object
+      required: [accountId, scheduledAt]
+      properties:
+        accountId:
+          type: string
+        draftId:
+          type: string
+        scheduledAt:
+          type: string
+          format: date-time
+        imageIds:
+          type: array
+          items:
+            type: string
+
+    GenerateScheduleRequest:
+      type: object
+      required: [accountIds, startDate, endDate]
+      properties:
+        accountIds:
+          type: array
+          items:
+            type: string
+          description: 目标账号 ID 列表
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        postsPerDay:
+          type: integer
+          minimum: 1
+          maximum: 2
+          default: 2
+          description: 每天篇数
+        timeSlots:
+          type: array
+          items:
+            type: string
+          description: "自定义发布时段，如 [\"10:00\", \"20:00\"]"
+
+    UpdateScheduleRequest:
+      type: object
+      properties:
+        scheduledAt:
+          type: string
+          format: date-time
+        draftId:
+          type: string
+        imageIds:
+          type: array
+          items:
+            type: string
+
+    ScheduleConflict:
+      type: object
+      properties:
+        accountId:
+          type: string
+        time1:
+          type: string
+          format: date-time
+        time2:
+          type: string
+          format: date-time
+        intervalMinutes:
+          type: integer
+        suggestion:
+          type: string
+          description: 自动调整建议
+
+    # ─── Publish Models ───────────────────────────────────────
+    PublishTask:
+      type: object
+      properties:
+        scheduleId:
+          type: string
+        status:
+          type: string
+          enum: [queued, publishing]
+        message:
+          type: string
+
+    PublishLog:
+      type: object
+      properties:
+        id:
+          type: string
+        scheduleId:
+          type: string
+        accountId:
+          type: string
+        accountNickname:
+          type: string
+        status:
+          type: string
+          enum: [pending, publishing, success, failed]
+        title:
+          type: string
+          description: 发布的笔记标题
+        startedAt:
+          type: string
+          format: date-time
+          nullable: true
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+        durationMs:
+          type: integer
+          nullable: true
+          description: 发布耗时（毫秒）
+        error:
+          type: object
+          nullable: true
+          properties:
+            code:
+              type: string
+              enum: [cookie_expired, selector_not_found, page_timeout, anti_risk_triggered, unknown]
+            message:
+              type: string
+            screenshotPath:
+              type: string
+              nullable: true
+        retryCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+
+    # ─── Dashboard Models ─────────────────────────────────────
+    DashboardOverview:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              nickname:
+                type: string
+              platform:
+                type: string
+              cookieStatus:
+                type: string
+                enum: [valid, expiring, expired, unknown]
+              isPublishing:
+                type: boolean
+        todayStats:
+          type: object
+          properties:
+            total:
+              type: integer
+            success:
+              type: integer
+            failed:
+              type: integer
+            pending:
+              type: integer
+            publishing:
+              type: integer
+        successRate:
+          type: number
+          format: float
+          description: 总成功率 (0-1)
+        upcomingSchedules:
+          type: array
+          items:
+            $ref: "#/components/schemas/Schedule"
+          description: 即将发布的排期（最近5条）
+
+    PublishStats:
+      type: object
+      properties:
+        period:
+          type: string
+          enum: [today, week, month]
+        totalPublished:
+          type: integer
+        successCount:
+          type: integer
+        failedCount:
+          type: integer
+        successRate:
+          type: number
+          format: float
+        byAccount:
+          type: array
+          items:
+            type: object
+            properties:
+              accountId:
+                type: string
+              nickname:
+                type: string
+              published:
+                type: integer
+              success:
+                type: integer
+              failed:
+                type: integer
+        dailyBreakdown:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              success:
+                type: integer
+              failed:
+                type: integer
+
+    Alert:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum: [cookie_expired, cookie_expiring, publish_failed, anti_risk_warning]
+        severity:
+          type: string
+          enum: [info, warning, error]
+        accountId:
+          type: string
+          nullable: true
+        message:
+          type: string
+        actionUrl:
+          type: string
+          description: 处理此告警的跳转 URL
+        createdAt:
+          type: string
+          format: date-time
+        dismissedAt:
+          type: string
+          format: date-time
+          nullable: true
+
+    # ─── Settings Models ──────────────────────────────────────
+    SafetyConfig:
+      type: object
+      properties:
+        maxPostsPerDay:
+          type: integer
+          minimum: 1
+          maximum: 10
+          default: 2
+          description: 每日发布上限
+        minIntervalMinutes:
+          type: integer
+          minimum: 30
+          default: 120
+          description: 最小发布间隔（分钟）
+        randomDelayMin:
+          type: integer
+          minimum: 100
+          default: 200
+          description: 随机延迟最小值（毫秒）
+        randomDelayMax:
+          type: integer
+          minimum: 200
+          default: 2000
+          description: 随机延迟最大值（毫秒）
+        isAccountOverride:
+          type: boolean
+          description: 是否为账号级覆盖配置
+        updatedAt:
+          type: string
+          format: date-time
+
+    SafetyConfigInput:
+      type: object
+      properties:
+        maxPostsPerDay:
+          type: integer
+          minimum: 1
+          maximum: 10
+        minIntervalMinutes:
+          type: integer
+          minimum: 30
+        randomDelayMin:
+          type: integer
+          minimum: 100
+        randomDelayMax:
+          type: integer
+          minimum: 200
+
+    SelectorConfig:
+      type: object
+      properties:
+        version:
+          type: string
+          description: 当前版本号
+        platform:
+          type: string
+          enum: [xiaohongshu]
+        selectors:
+          type: object
+          description: 选择器 JSON 配置
+          properties:
+            login:
+              type: object
+              properties:
+                qrCode:
+                  type: string
+                scanConfirm:
+                  type: string
+            publish:
+              type: object
+              properties:
+                uploadButton:
+                  type: string
+                titleInput:
+                  type: string
+                bodyInput:
+                  type: string
+                hashtagInput:
+                  type: string
+                submitButton:
+                  type: string
+                confirmButton:
+                  type: string
+            validation:
+              type: object
+              properties:
+                successIndicator:
+                  type: string
+                errorIndicator:
+                  type: string
+        updatedAt:
+          type: string
+          format: date-time
+
+    SelectorConfigInput:
+      type: object
+      required: [selectors]
+      properties:
+        selectors:
+          type: object
+          description: 完整的选择器 JSON 配置
+        comment:
+          type: string
+          description: 版本备注
+
+    SelectorVersion:
+      type: object
+      properties:
+        id:
+          type: string
+        version:
+          type: string
+        comment:
+          type: string
+        diff:
+          type: string
+          description: 与前一版本的 diff
+        createdAt:
+          type: string
+          format: date-time
+
+    # ─── Common Models ────────────────────────────────────────
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          description: 错误码
+        message:
+          type: string
+          description: 错误描述
+        details:
+          type: object
+          description: 额外错误详情
+          additionalProperties: true
+
+    ValidationError:
+      type: object
+      properties:
+        code:
+          type: string
+          example: VALIDATION_ERROR
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+
+  responses:
+    ValidationError:
+      description: 请求参数校验失败
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ValidationError"
+    NotFound:
+      description: 资源不存在
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
